@@ -1,0 +1,24 @@
+{
+    "name": "ricardotenorio/PPO-PHP",
+    "description": "PPO",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ricardotenorio",
+            "email": "ricardo.heber@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Config.php"
+        ]
+    }
+}
