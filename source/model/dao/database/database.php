@@ -33,12 +33,11 @@ class Database
                 self::$error = $e;
             }
         }
-
-        return self::instance;
+        return self::$instance;
     }
 
-    public static function getError(): ?Exception {
-        return self::error;
+    public static function getError(): ?PDOException {
+        return self::$error;
     }
 }
  
