@@ -1,6 +1,9 @@
 <?php
+declare(strict_types = 1);
 
-class Database 
+namespace Ppo\Model;
+
+class DatabaseConnection 
 {
     // configuração do banco de dados
     private static $driver = 'pgsql';

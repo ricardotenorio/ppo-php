@@ -1,5 +1,5 @@
 {
-    "name": "ricardotenorio/PPO-PHP",
+    "name": "ricardotenorio/ppo-php",
     "description": "PPO",
     "minimum-stability": "dev",
     "license": "MIT",
@@ -15,11 +15,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Source\\": "source/"
-        },
-        "files": [
-            "source/Config.php"
-        ]
+            "Ppo\\": "src/"
+        }
     }, 
     "autoload-dev": {
         "classmap": [
@@ -31,6 +28,6 @@
         "ext-pdo": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "8.4"
+        "phpunit/phpunit": "^8.4"
     }
 }
