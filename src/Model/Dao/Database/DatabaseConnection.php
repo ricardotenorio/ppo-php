@@ -3,6 +3,9 @@ declare(strict_types = 1);
 
 namespace Ppo\Model;
 
+use \PDO;
+use \PDOException;
+
 class DatabaseConnection 
 {
     // configuração do banco de dados
