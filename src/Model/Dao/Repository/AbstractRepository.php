@@ -3,7 +3,10 @@
 
     namespace Ppo\Model\Repository;
 
-    abstract class Repository
+    abstract class AbstractRepository
     {
-
+        public function save(Entidade $entidade): void
+        {
+            
+        }
     }

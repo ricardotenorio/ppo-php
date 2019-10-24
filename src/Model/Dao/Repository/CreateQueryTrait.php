@@ -37,7 +37,7 @@
         protected function deleteQuery(string $entityName, array $conditions): string
         {
             $count = 0;
-            $query = "DELETE FROM {$entityName}" . createWhereConditions($conditions);
+            $query = "DELETE FROM {$entityName}" . $this->createWhereConditions($conditions);
 
             return $query;
         }
@@ -58,7 +58,7 @@
                 }
             }
 
-            $query = $query . createWhereConditions($conditions);
+            $query = $query . $this->createWhereConditions($conditions);
 
             return $query;
         }
@@ -78,12 +78,12 @@
                 }
             }
 
-            $query = $query . createWhereConditions($conditions);
+            $query = $query . $this->createWhereConditions($conditions);
 
             return $query;
         }
 
-        private function createWhereConditions(array $conditions): string
+        private function createWhereConditions(array $conditions = null): string
         {
             if (empty($conditions)) {
                 return "";

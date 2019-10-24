@@ -1,5 +1,16 @@
 <?php 
-	require __DIR__ . "/source/model/dao/database/database.php";
+	require __DIR__ . "/vendor/autoload.php";
+	
+	class test
+	{
+		use Ppo\Model\Repository\CreateQueryTrait;
+		public function t()
+		{
+			return $this->insertQuery('test', array('a1', 's2'));
+		}
+	}
+	
+	$test = new test;
 
-	var_dump(Database::getInstance());
-	echo '<br>' . Database::getError()->getMessage();
+
+	echo $test->t();

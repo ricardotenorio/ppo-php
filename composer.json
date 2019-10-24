@@ -15,7 +15,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Ppo\\": "src/"
+            "Ppo\\": "src/",
+            "Ppo\\Model\\Repository\\": "src/Model/Dao/Repository"
         }
     }, 
     "autoload-dev": {
