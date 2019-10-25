@@ -6,7 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateQueryTraitTest' => $baseDir . '/tests/CreateQueryTraitTest.php',
+    'AssuntoTest' => $baseDir . '/tests/EntityTests/AssuntoTest.php',
+    'CreateQueryTraitTest' => $baseDir . '/tests/RepositoryTests/CreateQueryTraitTest.php',
     'PHPUnit\\Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/Framework/Exception/AssertionFailedError.php',

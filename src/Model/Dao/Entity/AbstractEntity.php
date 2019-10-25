@@ -14,5 +14,29 @@ abstract class AbstractEntity
         createData();
         return $data;
     }
+
+    protected function addToArray(object $obj, array &$array): bool
+    {
+        if(in_array($obj, $array)){
+            return false;
+        }
+        
+        $array[] = $obj;
+
+        return true;
+    }
+
+    protected function removeFromArray(object $obj, array &$array): bool
+    {
+        $key = array_search($obj, $array);
+
+        if($key === false){
+            return false;
+        }
+
+        unset($array[$key]);
+
+        return true;
+    }
 }
  

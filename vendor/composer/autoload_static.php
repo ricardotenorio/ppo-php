@@ -28,6 +28,7 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
         array (
             'Prophecy\\' => 9,
             'Ppo\\Model\\Repository\\' => 21,
+            'Ppo\\Model\\Entity\\' => 17,
             'Ppo\\' => 4,
         ),
         'D' => 
@@ -60,6 +61,10 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
         array (
             0 => __DIR__ . '/../..' . '/src/Model/Dao/Repository',
         ),
+        'Ppo\\Model\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Model/Dao/Entity',
+        ),
         'Ppo\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
@@ -75,7 +80,8 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
     );
 
     public static $classMap = array (
-        'CreateQueryTraitTest' => __DIR__ . '/../..' . '/tests/CreateQueryTraitTest.php',
+        'AssuntoTest' => __DIR__ . '/../..' . '/tests/EntityTests/AssuntoTest.php',
+        'CreateQueryTraitTest' => __DIR__ . '/../..' . '/tests/RepositoryTests/CreateQueryTraitTest.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/AssertionFailedError.php',
