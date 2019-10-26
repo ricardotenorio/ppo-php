@@ -21,12 +21,12 @@ class Disciplina extends AbstractEntity
         $this->data = array('id' => $this->id, 'nome' => $this->nome);
     }
 
-    public function addAssunto(assunto $assunto): bool
+    public function addAssunto(Assunto $assunto): bool
     {
         return $this->addToArray($assunto, $this->assuntos);
     }
 
-    public function removeAssunto(assunto $assunto): bool
+    public function removeAssunto(Assunto $assunto): bool
     {
         return $this->removeFromArray($assunto, $this->assuntos);
     }

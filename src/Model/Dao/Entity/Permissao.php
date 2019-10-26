@@ -21,12 +21,12 @@ class Permissao extends AbstractEntity
         $this->data = array('id' => $this->id, 'nome' => $this->nome);
     }
 
-    public function addUsuario(usuario $usuario): bool
+    public function addUsuario(Usuario $usuario): bool
     {
         return $this->addToArray($usuario, $this->usuarios);
     }
 
-    public function removeUsuario(usuario $usuario): bool
+    public function removeUsuario(Usuario $usuario): bool
     {
         return $this->removeFromArray($usuario, $this->usuarios);
     }

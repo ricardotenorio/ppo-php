@@ -34,6 +34,8 @@ class Assunto extends AbstractEntity
         return $this->removeFromArray($postagem, $this->postagens);
     }
 
+    //getters & setters
+
     public function getId(): int
     {
         return $this->id;
@@ -56,7 +58,7 @@ class Assunto extends AbstractEntity
 
     public function getDisciplina(): Disciplina
     {
-        return $this->discipina;
+        return $this->disciplina;
     }
 
     public function setDisciplina(Disciplina $disciplina): void
