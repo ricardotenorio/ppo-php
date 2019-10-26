@@ -16,6 +16,7 @@
     "autoload": {
         "psr-4": {
             "Ppo\\": "src/",
+            "Ppo\\Model\\Database\\": "src/Model/Dao/Database",
             "Ppo\\Model\\Repository\\": "src/Model/Dao/Repository",
             "Ppo\\Model\\Entity\\": "src/Model/Dao/Entity"
         }

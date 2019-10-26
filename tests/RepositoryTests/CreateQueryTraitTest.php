@@ -10,7 +10,7 @@ class CreateQueryTraitTest extends TestCase
     public function testValidInsertQuery(): void
     {
         $entityName = 'usuario';
-        $data = array('nome' => 'test', 'email' => 'test@test.com', 'senha' => '$$$$', 'data_criacao' => '01-01-1970', 'permissao_id' => 1);
+        $data = array('id' => 1, 'nome' => 'test', 'email' => 'test@test.com', 'senha' => '$$$$', 'data_criacao' => '01-01-1970', 'permissao_id' => 1);
         $query = 'INSERT INTO usuario (nome, email, senha, data_criacao, permissao_id) VALUES (:nome, :email, :senha, :data_criacao, :permissao_id)';
         
         $this->assertEquals($query, $this->insertQuery($entityName, $data));
@@ -19,7 +19,7 @@ class CreateQueryTraitTest extends TestCase
     public function testValidDeleteQuery(): void
     {
         $entityName = 'permissao';
-        $data = array('nome' => 'admin');
+        $data = array('id' => 1,'nome' => 'admin');
         $query = 'DELETE FROM permissao WHERE nome = :nome';
 
         $this->assertEquals($query, $this->deleteQuery($entityName, $data));

@@ -13,7 +13,11 @@
             $query = "INSERT INTO {$entityName} (";
             $queryAppend = " VALUES (";
             
-            foreach ($data as $key => $value) { 
+            foreach ($data as $key => $value) {
+                if ($key == 'id'){
+                    $count++;
+                    continue;
+                }
                 $query = $query . $key;
                 $queryAppend = $queryAppend . ":{$key}";
                 $count++;

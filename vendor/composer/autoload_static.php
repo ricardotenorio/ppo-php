@@ -29,6 +29,7 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
             'Prophecy\\' => 9,
             'Ppo\\Model\\Repository\\' => 21,
             'Ppo\\Model\\Entity\\' => 17,
+            'Ppo\\Model\\Database\\' => 19,
             'Ppo\\' => 4,
         ),
         'D' => 
@@ -64,6 +65,10 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
         'Ppo\\Model\\Entity\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Model/Dao/Entity',
+        ),
+        'Ppo\\Model\\Database\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Model/Dao/Database',
         ),
         'Ppo\\' => 
         array (
