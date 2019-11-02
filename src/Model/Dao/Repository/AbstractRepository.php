@@ -15,7 +15,7 @@
 
         abstract public function createObject(array $entity): ?AbstractEntity;
        
-        public function save(string $entityName, array $data): void
+        protected function insert(string $entityName, array $data): void
         {
             try {
                 $connection = DatabaseConnection::getInstance();
@@ -30,7 +30,7 @@
             }
         }
 
-        public function delete(string $entityName, array $conditions): void
+        protected function delete(string $entityName, array $conditions): void
         {
             try {
                 $connection = DatabaseConnection::getInstance();
@@ -45,7 +45,7 @@
             }
         }
 
-        public function update(string $entityName, array $data, array $conditions): void
+        protected function update(string $entityName, array $data, array $conditions): void
         {
             try {
                 $connection = DatabaseConnection::getInstance();
@@ -60,7 +60,7 @@
             }
         }
 
-        public function fetch(string $entityName, array $joinTables = null, array $conditions): ?array
+        protected function fetch(string $entityName, array $joinTables = null, array $conditions): ?array
         {
             $data;
 
@@ -81,7 +81,7 @@
         }
 
         
-        public function fetchAll(string $entityName, array $joinTables = null, array $conditions): ?array
+        protected function fetchAll(string $entityName, array $joinTables = null, array $conditions = null): ?array
         {
             $data;
             

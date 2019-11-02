@@ -19,17 +19,17 @@ class CreateQueryTraitTest extends TestCase
     public function testValidDeleteQuery(): void
     {
         $entityName = 'permissao';
-        $data = array('id' => 1,'nome' => 'admin');
-        $query = 'DELETE FROM permissao WHERE nome = :nome';
+        $conditions = array('id' => 1,'nome' => 'admin');
+        $query = 'DELETE FROM permissao WHERE id = :id AND nome = :nome';
 
-        $this->assertEquals($query, $this->deleteQuery($entityName, $data));
+        $this->assertEquals($query, $this->deleteQuery($entityName, $conditions));
     }
 
     public function testValidUpdateQuery(): void
     {
         $entityName = 'permissao';
         $data = array('nome' => 'admin');
-        $conditions = array('id' => '12');
+        $conditions = array('id' => 12);
         $query = 'UPDATE permissao SET nome = :nome';
         $query2 = $query . ' WHERE id = :id';
 
