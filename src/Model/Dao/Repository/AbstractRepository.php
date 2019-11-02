@@ -67,10 +67,10 @@
             try {
                 $connection = DatabaseConnection::getInstance();
                 if (empty($connection)){
-                    return DatabaseConnection::getError();
+                    return null;
                 }
 
-                $stmt = $connection->prepare($this->selectQuery($entityName, $joinTables, $conditions));
+                $stmt = $connection->prepare($this->selectQuery($entityName, $joinTables, $conditions) . " LIMIT 1");
                 $stmt->execute($conditions);
                 $data = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
@@ -80,10 +80,30 @@
             return $data;
         }
 
+        
+        public function fetchAll(string $entityName, array $joinTables = null, array $conditions): ?array
+        {
+            $data;
+            
+            try {
+                $connection = DatabaseConnection::getInstance();
+                if (empty($connection)){
+                    return null;
+                }
+                
+                $stmt = $connection->prepare($this->selectQuery($entityName, $joinTables, $conditions));
+                $stmt->execute($conditions);
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                $this->error = $e;
+            }
+            
+            return $data;
+        }
+        
         public function getError(): ?Exception
         {
             return $this->error;
         }
-
     }
   
