@@ -44,7 +44,7 @@ class Lista extends AbstractEntity
 
     // getters & setters
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -64,7 +64,7 @@ class Lista extends AbstractEntity
         $this->nome = $nome;
     }
 
-    public function getDescricao(): string
+    public function getDescricao(): ?string
     {
         return $this->descricao;
     }
@@ -84,7 +84,7 @@ class Lista extends AbstractEntity
         $this->dataCriacao = dataCriacao;
     }
 
-    public function getVotos(): int
+    public function getVotos(): ?int
     {
         return $this->votos;
     }
@@ -94,7 +94,7 @@ class Lista extends AbstractEntity
         $this->votos = $votos;
     }
 
-    public function getUsuario(): Usuario
+    public function getUsuario(): ?Usuario
     {
         return $this->usuario;
     }
@@ -104,7 +104,7 @@ class Lista extends AbstractEntity
         $this->usuario = $usuario;
     }
 
-    public function getPostagens(): array
+    public function getPostagens(): ?array
     {
         return $this->postagens;
     }

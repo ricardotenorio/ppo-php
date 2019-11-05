@@ -36,7 +36,7 @@ class Assunto extends AbstractEntity
 
     //getters & setters
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -56,7 +56,7 @@ class Assunto extends AbstractEntity
         $this->nome = $nome;
     }
 
-    public function getDisciplina(): Disciplina
+    public function getDisciplina(): ?Disciplina
     {
         return $this->disciplina;
     }

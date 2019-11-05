@@ -4,7 +4,8 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Database\DatabaseConnection;
-    use Ppo\Model\Entity;
+    use Ppo\Model\Entity\AbstractEntity;
+    use PDO;
     use PDOException;
 
     abstract class AbstractRepository
@@ -23,6 +24,8 @@
                     return;
                 }
 
+                unset($data["id"]);
+
                 $stmt = $connection->prepare($this->insertQuery($entityName, $data));
                 $stmt->execute($data);
             } catch (PDOException $e){
@@ -30,7 +33,7 @@
             }
         }
 
-        protected function delete(string $entityName, array $conditions): void
+        protected function deleteRow(string $entityName, array $conditions): void
         {
             try {
                 $connection = DatabaseConnection::getInstance();
@@ -75,6 +78,10 @@
                 $data = $stmt->fetch(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 $this->error = $e;
+            }
+
+            if (empty($data)){
+                return null;
             }
 
             return $data;

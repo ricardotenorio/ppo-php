@@ -1,16 +1,19 @@
 <?php 
 	require __DIR__ . "/vendor/autoload.php";
-	
-	class test
-	{
-		use Ppo\Model\Repository\CreateQueryTrait;
-		public function t()
-		{
-			return $this->insertQuery('test', array('a1', 's2'));
-		}
-	}
-	
-	$test = new test;
 
+	use Ppo\Model\Repository\DisciplinaRepository;
+	use Ppo\Model\Entity\Disciplina;
+	use Ppo\Model\Entity\AbstractEntity;
 
-	echo $test->t();
+	//echo var_dump($disciplina->getData()) . "<br><br>";
+	
+	
+	$drep = new DisciplinaRepository();
+	
+	
+	$disciplina = $drep->searchById(1);
+	$drep->delete($disciplina);
+	
+	echo var_dump($disciplina) . "<br>";
+	
+	//$drep->save($disciplina);

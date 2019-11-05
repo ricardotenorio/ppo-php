@@ -4,15 +4,19 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Entity\Disciplina;
+    use Ppo\Model\Entity\AbstractEntity;
 
-    abstract class DisciplinaRepository extends AbstractRepository
+    class DisciplinaRepository extends AbstractRepository
     {
-        public function createObject(array $entity): ?AbstractEntity
+        public function createObject(array $entity = null): ?AbstractEntity
         {
+            if (!$entity) {
+                return null;
+            }
             $disciplina;
             $assuntos;
 
-            if ($entity["assuntos"]){
+            if (!empty($entity["assuntos"])){
                 $assuntos = $entity["assuntos"];
             } else {
                 $assuntos = array();
@@ -23,7 +27,7 @@
             return $disciplina;
         }
 
-        public function save(Discipina $disciplina): Disciplina
+        public function save(Disciplina $disciplina): void
         {
             if (empty($disciplina->getId())) {
                 $this->insert("disciplina", $disciplina->getData());
@@ -34,12 +38,21 @@
 
         public function delete(Disciplina $disciplina): void
         {
-            $this->delete("disciplina", array("id" => $disciplina->getId()));
+            $this->deleteRow("disciplina", array("id" => $disciplina->getId()));
         }
 
         public function searchById(int $id): ?Disciplina
         {
             $data = $this->fetch("disciplina", null, array("id" => $id));
+            
+            $disciplina = $this->createObject($data);
+
+            return $disciplina;
+        }
+
+        public function searchByNome(string $nome): ?Disciplina
+        {
+            $data = $this->fetch("disciplina", null, array("nome" => $nome));
             $disciplina = $this->createObject($data);
 
             return $disciplina;

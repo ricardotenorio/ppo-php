@@ -33,7 +33,7 @@ class Disciplina extends AbstractEntity
 
     // getters & setters
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -53,7 +53,7 @@ class Disciplina extends AbstractEntity
         $this->nome = $nome;
     }
 
-    public function getAssuntos(): array
+    public function getAssuntos(): ?array
     {
         return $this->assuntos;
     }

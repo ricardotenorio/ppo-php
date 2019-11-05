@@ -11,8 +11,8 @@ abstract class AbstractEntity
 
     public function getData(): ?array
     {
-        createData();
-        return $data;
+        $this->createData();
+        return $this->data;
     }
 
     protected function addToArray(object $obj, array &$array): bool

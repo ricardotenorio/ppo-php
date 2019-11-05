@@ -40,7 +40,7 @@ class Postagem extends AbstractEntity
 
     // getters & setters
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -80,7 +80,7 @@ class Postagem extends AbstractEntity
         $this->titulo = $titulo;
     }
 
-    public function getDescricao(): string
+    public function getDescricao(): ?string
     {
         return $this->descricao;
     }
@@ -90,7 +90,7 @@ class Postagem extends AbstractEntity
         $this->descricao = $descricao;
     }
 
-    public function getVotos(): int
+    public function getVotos(): ?int
     {
         return $this->votos;
     }
@@ -110,7 +110,7 @@ class Postagem extends AbstractEntity
         $this->dataCriacao = $dataCriacao;
     }
 
-    public function getUsuario(): Usuario
+    public function getUsuario(): ?Usuario
     {
         return $this->usuario;
     }
@@ -120,7 +120,7 @@ class Postagem extends AbstractEntity
         $this->usuario = $usuario;
     }
 
-    public function getAssunto(): Assunto
+    public function getAssunto(): ?Assunto
     {
         return $this->assunto;
     }

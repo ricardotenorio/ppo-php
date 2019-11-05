@@ -56,7 +56,7 @@ class Usuario extends AbstractEntity
 
     // getters & setters
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -106,7 +106,7 @@ class Usuario extends AbstractEntity
         $this->dataCriacao = $dataCriacao;
     }
 
-    public function getPermissao(): Permissao
+    public function getPermissao(): ?Permissao
     {
         return $this->permissao;
     }
@@ -116,7 +116,7 @@ class Usuario extends AbstractEntity
         $this->permissao = $permissao;
     }
 
-    public function getPostagens(): array
+    public function getPostagens(): ?array
     {
         return $this->postagens;
     }
@@ -126,7 +126,7 @@ class Usuario extends AbstractEntity
         $this->postagens = $postagens;
     }
 
-    public function getListas(): array
+    public function getListas(): ?array
     {
         return $this->listas;
     }
