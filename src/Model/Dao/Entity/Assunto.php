@@ -10,7 +10,7 @@ class Assunto extends AbstractEntity
     private $disciplina;
     private $postagens;
 
-    public function __construct(int $id = null, string $nome, Disciplina $disciplina, array $postagens)
+    public function __construct(int $id = null, string $nome, Disciplina $disciplina, array $postagens = null)
     {
         $this->id = $id;
         $this->nome = $nome;

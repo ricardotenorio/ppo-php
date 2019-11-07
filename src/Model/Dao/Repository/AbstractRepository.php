@@ -99,6 +99,8 @@
                 }
                 
                 $stmt = $connection->prepare($this->selectQuery($entityName, $joinTables, $conditions));
+                // remove later
+                echo '<br>' . $this->selectQuery($entityName, $joinTables, $conditions) . '<br><br>';
                 $stmt->execute($conditions);
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
