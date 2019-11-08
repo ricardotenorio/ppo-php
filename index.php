@@ -7,7 +7,7 @@
 	use Ppo\Model\Entity\AbstractEntity;
 	use Ppo\Model\Entity\Assunto;
 
-	//echo var_dump($disciplina->getData()) . "<br><br>";
+	/*echo var_dump($disciplina->getData()) . "<br><br>";
 	
 	$arep = new AssuntoRepository();
 	$drep = new DisciplinaRepository();	
@@ -24,3 +24,6 @@
 	echo '<pre>', var_dump($assuntos) , '<pre>';
 	
 	//$drep->save($disciplina);
+	*/
+
+	var_dump(date('Y-m-d'));

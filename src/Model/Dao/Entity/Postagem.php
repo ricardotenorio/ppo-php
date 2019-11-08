@@ -17,7 +17,7 @@ class Postagem extends AbstractEntity
 
     public function __construct(int $id = null, string $tipo, string $link, string $titulo,
         string $descricao = null, int $votos = 0, string $dataCriacao = null,
-        Usuario $usuario, Assunto $assunto)
+        Usuario $usuario = null, Assunto $assunto)
     {
         $this->id = $id;
         $this->tipo = $tipo;
@@ -32,9 +32,11 @@ class Postagem extends AbstractEntity
 
     protected function createData(): void
     {
+        $usuarioId = $this->usuario ? $this->usuario->getId() : null;
+
         $this->data = array('id' => $this->id, 'tipo' => $this->tipo, 'link' => $this->link,
             'titulo' => $this->titulo, 'descricao' => $this->descricao, 'votos' => $this->votos,
-            'data_criacao' => $this->dataCriacao, 'usuario_id' => $this->usuario->getId(),
+            'data_criacao' => $this->dataCriacao, 'usuario_id' => $usuarioId,
             'assunto_id' => $this->assunto->getId());
     }
 

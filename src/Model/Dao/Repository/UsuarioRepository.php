@@ -4,6 +4,7 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Entity\Usuario;
+    use Ppo\Model\Entity\PermissaoRepository;
     use Ppo\Model\Entity\AbstractEntity;
 
     class UsuarioRepository extends AbstractRepository
@@ -14,7 +15,14 @@
                 return null;
             }
             $usuario;
+            $permissao;
             $postagens;
+            $listas;
+
+            if (empty($entity["permissao"])){
+                $permissaoRepository = new PermissaoRepository();
+                $permissao = $permissaoRepository->searchById($entity["permissao_id"]);
+            }
 
             if (!empty($entity["postagens"])){
                 $postagens = $entity["postagens"];
@@ -22,7 +30,14 @@
                 $postagens = array();
             }
 
-            $usuario = new Usuario($entity["id"], $entity["nome"], $postagens);
+            if (!empty($entity["listas"])){
+                $listas = $entity["listas"];
+            } else {
+                $listas = array();
+            }
+
+            $usuario = new Usuario($entity["id"], $entity["nome"], $entity["email"],
+                $entity["senha"], $entity["data_criacao"], $permissao, $postagens, $listas);
 
             return $usuario;
         }
@@ -30,6 +45,7 @@
         public function save(Usuario $usuario): void
         {
             if (empty($usuario->getId())) {
+                $usuario->setDataCriacao(date("Y-m-d"));
                 $this->insert("usuario", $usuario->getData());
             } else {
                 $this->update("usuario", $usuario->getData(), array("id" => $usuario->getId()));
@@ -56,6 +72,28 @@
             $usuario = $this->createObject($data);
 
             return $usuario;
+        }
+
+        public function searchByEmail(string $email): ?Usuario
+        {
+            $data = $this->fetch("usuario", null, array("email" => $email));
+            $usuario = $this->createObject($data);
+
+            return $usuario;
+        }
+
+        public function searchByPermissao(Permissao $permissao): ?array
+        {
+            $joinTables = array("permissao" => array("permissao_id", "permissao.id"));
+            $conditions = array("permissao_id" => $permissao->getId());
+            $data = $this->fetchAll("usuario", $joinTables, $conditions);
+            $usuarios = array();
+
+            foreach ($data as $key => $value) {
+                array_push($usuarios, $this->createObject($value));
+            }
+
+            return $usuarios;
         }
 
         public function listAll(): ?array

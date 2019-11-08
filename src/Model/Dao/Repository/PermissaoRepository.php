@@ -4,6 +4,7 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Entity\Permissao;
+    use Ppo\Model\Entity\UsuarioRepository;
     use Ppo\Model\Entity\AbstractEntity;
 
     class PermissaoRepository extends AbstractRepository
@@ -16,7 +17,7 @@
             $permissao;
             $usuarios;
 
-            if (!empty($entity["usuarios"])){
+            if (!empty($entity["usuarios"])) {
                 $usuarios = $entity["usuarios"];
             } else {
                 $usuarios = array();
