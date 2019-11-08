@@ -42,6 +42,7 @@
         public function save(Postagem $postagem): void
         {
             if (empty($postagem->getId())) {
+                $postagem->setDataCriacao(date("Y-m-d"));
                 $this->insert("postagem", $postagem->getData());
             } else {
                 $this->update("postagem", $postagem->getData(), array("id" => $postagem->getId()));

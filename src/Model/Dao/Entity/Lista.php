@@ -14,7 +14,7 @@ class Lista extends AbstractEntity
     private $postagens;
 
     public function __construct(int $id = null, string $nome, string $descricao,
-        string $dataCriacao = null, int $votos = 0, Usuario $usuario, array $postagens)
+        string $dataCriacao = null, int $votos = 0, Usuario $usuario, array $postagens = null)
     {
         $this->id = $id;
         $this->nome = $nome;
