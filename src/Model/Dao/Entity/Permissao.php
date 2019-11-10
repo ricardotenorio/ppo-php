@@ -9,7 +9,7 @@ class Permissao extends AbstractEntity
     private $nome;
     private $usuarios;
 
-    public function __construct(int $id = null, string $nome, array $usuarios)
+    public function __construct(int $id = null, string $nome, array $usuarios = null)
     {
         $this->id = $id;
         $this->nome = $nome;

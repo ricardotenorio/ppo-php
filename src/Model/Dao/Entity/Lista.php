@@ -13,7 +13,7 @@ class Lista extends AbstractEntity
     private $usuario;
     private $postagens;
 
-    public function __construct(int $id = null, string $nome, string $descricao,
+    public function __construct(int $id = null, string $nome, string $descricao = null,
         string $dataCriacao = null, int $votos = 0, Usuario $usuario, array $postagens = null)
     {
         $this->id = $id;
@@ -81,7 +81,7 @@ class Lista extends AbstractEntity
 
     public function setDataCriacao(string $dataCriacao): void
     {
-        $this->dataCriacao = dataCriacao;
+        $this->dataCriacao = $dataCriacao;
     }
 
     public function getVotos(): ?int

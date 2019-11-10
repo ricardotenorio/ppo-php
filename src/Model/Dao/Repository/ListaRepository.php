@@ -4,9 +4,9 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Entity\Lista;
-    use Ppo\Model\Entity\UsuarioRepository;
-    use Ppo\Model\Entity\PostagemRepository;
     use Ppo\Model\Entity\AbstractEntity;
+    use Ppo\Model\Repository\UsuarioRepository;
+    use Ppo\Model\Repository\PostagemRepository;
 
     class ListaRepository extends AbstractRepository
     {
@@ -32,8 +32,8 @@
                 $postagens = $entity["postagens"];
             }
 
-            $lista = new Lista($entity["id"], $entity["tipo"], $entity["link"],
-                $entity["nome"], $entity["descricao"], 0, $entity["data_criacao"], $usuario, $postagens);
+            $lista = new Lista($entity["id"], $entity["nome"], $entity["descricao"],
+                $entity["data_criacao"], 0, $usuario, $postagens);
 
             return $lista;
         }
@@ -41,29 +41,20 @@
         public function save(Lista $lista): void
         {
             if (empty($lista->getId())) {
-                $lista->setDataCriacao(date("Y-m-d"));
-                $this->insert("lista", $lista->getData());
+                $id;
+                $lista->setDataCriacao(date("Y-m-d H:i:s"));
+                $id = $this->insert("lista", $lista->getData());
+                $lista->setId($id);
             } else {
                 $this->update("lista", $lista->getData(), array("id" => $lista->getId()));
             }
-            
+
             $conditions = array("lista_id" => $lista->getId());
             $data = $this->fetchAll("lista_conteudo", null, $conditions);
 
-            foreach ($lista->getPostagens() as $i => $postagem) {
-                $contains = false;
-                foreach ($data as $j => $conteudo) {
-                    if ($postagem->getId() == $conteudo["postagem_id"]) {
-                        $contains = true;
-                        break;
-                    }
-                }
-
-                if (!$contains) {
-                    $this->insert("lista_conteudo", array("lista_id" => $lista->getId(), 
-                    "postagem_id" => $postagem->getId()));
-                }
-            }
+            $this->deleteConteudo($lista, $data);
+            $this->saveConteudo($lista, $data);
+           
         }
 
         public function delete(Lista $lista): void
@@ -102,11 +93,23 @@
             }
 
             return $listas;
+        }        
+
+        public function listAll(): ?array
+        {
+            $data = $this->fetchAll("lista");
+            $listas = array();
+
+            foreach ($data as $key => $value) {
+                array_push($listas, $this->createObject($value));
+            }
+
+            return $listas;
         }
 
         private function fetchConteudo(int $listaId): ?array
         {
-            $joinTables = array("postagem" => array("postagem.id", "postagem_id"));
+            $joinTables = array("lista_conteudo" => array("postagem.id", "postagem_id"));
             $conditions = array("lista_id" => $listaId);
             $data = $this->fetchAll("postagem", $joinTables, $conditions);
             $postagens = array();
@@ -119,15 +122,45 @@
             return $postagens;
         }
 
-        public function listAll(): ?array
-        {
-            $data = $this->fetchAll("lista");
-            $listas = array();
+        private function saveConteudo(Lista $lista, array $data): void
+        {    
+            foreach ($lista->getPostagens() as $i => $postagem) {
+                $save = true;
+                foreach ($data as $j => $conteudo) {
+                    if ($postagem->getId() == $conteudo["postagem_id"]) {
+                        $save = false;
+                        break;
+                    }
+                }
+                if ($save) {
+                    $this->insert("lista_conteudo", array("lista_id" => $lista->getId(), 
+                    "postagem_id" => $postagem->getId()));
+                }
+            }
+        }
 
-            foreach ($data as $key => $value) {
-                array_push($listas, $this->createObject($value));
+        private function deleteConteudo(Lista $lista, array $data): void
+        {
+            if (empty($data)){
+                return;
+            }
+            if (empty($lista->getPostagens())) {
+                $this->deleteRow("lista_conteudo", array("lista_id" => $lista->getId()));
             }
 
-            return $listas;
+            foreach ($lista->getPostagens() as $i => $postagem) {
+                $delete = true;
+                foreach ($data as $j => $conteudo) {
+                    if ($postagem->getId() == $conteudo["postagem_id"]) {
+                        $delete = false;
+                        break;
+                    }
+                }
+                
+                if ($delete) {
+                    $this->deleteRow("lista_conteudo", array("lista_id" => $lista->getId(), 
+                    "postagem_id" => $postagem->getId()));
+                }
+            }
         }
     }

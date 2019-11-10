@@ -4,8 +4,8 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Entity\Usuario;
-    use Ppo\Model\Entity\PermissaoRepository;
     use Ppo\Model\Entity\AbstractEntity;
+    use Ppo\Model\Repository\PermissaoRepository;
 
     class UsuarioRepository extends AbstractRepository
     {

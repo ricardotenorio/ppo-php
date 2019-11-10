@@ -16,7 +16,7 @@ class Usuario extends AbstractEntity
 
     public function __construct(int $id = null, string $nome, string $email,
         string $senha, string $dataCriacao = null, Permissao $permissao,
-        array $postagens, array $listas)
+        array $postagens = null, array $listas = null)
     {
         $this->id = $id;
         $this->nome = $nome;

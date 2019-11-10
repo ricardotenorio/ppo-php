@@ -16,18 +16,19 @@
 
         abstract public function createObject(array $entity): ?AbstractEntity;
        
-        protected function insert(string $entityName, array $data): void
+        protected function insert(string $entityName, array $data): ?int
         {
             try {
                 $connection = DatabaseConnection::getInstance();
                 if (empty($connection)){
-                    return;
+                    return null;
                 }
 
                 unset($data["id"]);
 
                 $stmt = $connection->prepare($this->insertQuery($entityName, $data));
                 $stmt->execute($data);
+                return (int)$connection->lastInsertId();
             } catch (PDOException $e){
                 $this->error = $e;
             }

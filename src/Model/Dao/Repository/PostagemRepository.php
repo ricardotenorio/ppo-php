@@ -4,9 +4,9 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Entity\Postagem;
-    use Ppo\Model\Entity\UsuarioRepository;
-    use Ppo\Model\Entity\AssuntoRepository;
     use Ppo\Model\Entity\AbstractEntity;
+    use Ppo\Model\Repository\UsuarioRepository;
+    use Ppo\Model\Repository\AssuntoRepository;
 
     class PostagemRepository extends AbstractRepository
     {
@@ -42,7 +42,7 @@
         public function save(Postagem $postagem): void
         {
             if (empty($postagem->getId())) {
-                $postagem->setDataCriacao(date("Y-m-d"));
+                $postagem->setDataCriacao(date("Y-m-d H:i:s"));
                 $this->insert("postagem", $postagem->getData());
             } else {
                 $this->update("postagem", $postagem->getData(), array("id" => $postagem->getId()));
