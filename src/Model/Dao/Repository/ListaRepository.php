@@ -141,25 +141,26 @@
 
         private function deleteConteudo(Lista $lista, array $data): void
         {
+            $size = sizeof($lista->getPostagens());
             if (empty($data)){
                 return;
             }
-            if (empty($lista->getPostagens())) {
+            if ($size == 0) {
                 $this->deleteRow("lista_conteudo", array("lista_id" => $lista->getId()));
             }
 
-            foreach ($lista->getPostagens() as $i => $postagem) {
-                $delete = true;
-                foreach ($data as $j => $conteudo) {
-                    if ($postagem->getId() == $conteudo["postagem_id"]) {
-                        $delete = false;
+            foreach ($data as $i => $conteudo) {
+                $count = 0;
+                foreach ($lista->getPostagens() as $j => $postagem) {
+                    if ($conteudo["postagem_id"] == $postagem->getId()) {
                         break;
                     }
+                    $count += 1;
                 }
-                
-                if ($delete) {
-                    $this->deleteRow("lista_conteudo", array("lista_id" => $lista->getId(), 
-                    "postagem_id" => $postagem->getId()));
+
+                if ($count == $size) {
+                    $this->deleteRow("lista_conteudo", array("lista_id" => $lista->getId(),
+                        "postagem_id" => $conteudo["postagem_id"]));
                 }
             }
         }

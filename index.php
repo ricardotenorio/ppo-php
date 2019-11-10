@@ -52,7 +52,7 @@
 	//$lista = $lrep->searchById(1);
 	$lista->removePostagem($postagem);
 	$lista->addPostagem($postagem2);
-	echo '<pre>' , var_dump($lista) , '<pre>';
+	//echo '<pre>' , var_dump($lista) , '<pre>';
 	$lrep->save($lista);
 	
 	//$lrep->save($lista);
