@@ -9,7 +9,6 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'd6269037905f3c9bf719b4487414beeb' => __DIR__ . '/../..' . '/source/Config.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -24,11 +23,14 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Source\\' => 7,
         ),
         'P' => 
         array (
             'Prophecy\\' => 9,
+            'Ppo\\Model\\Repository\\' => 21,
+            'Ppo\\Model\\Entity\\' => 17,
+            'Ppo\\Model\\Database\\' => 19,
+            'Ppo\\' => 4,
         ),
         'D' => 
         array (
@@ -52,13 +54,25 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'Source\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/source',
-        ),
         'Prophecy\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
+        'Ppo\\Model\\Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Model/Dao/Repository',
+        ),
+        'Ppo\\Model\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Model/Dao/Entity',
+        ),
+        'Ppo\\Model\\Database\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Model/Dao/Database',
+        ),
+        'Ppo\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -71,7 +85,8 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
     );
 
     public static $classMap = array (
-        'EmailTest' => __DIR__ . '/../..' . '/tests/EmailTest.php',
+        'AssuntoTest' => __DIR__ . '/../..' . '/tests/EntityTests/AssuntoTest.php',
+        'CreateQueryTraitTest' => __DIR__ . '/../..' . '/tests/RepositoryTests/CreateQueryTraitTest.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/AssertionFailedError.php',
