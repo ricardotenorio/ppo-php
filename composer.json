@@ -28,7 +28,9 @@
     },
     "require": {
         "php": "^7.3",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+
+        "coffeecode/router": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.4"
