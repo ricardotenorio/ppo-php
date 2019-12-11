@@ -13,6 +13,7 @@ return array(
     'Ppo\\Model\\Repository\\' => array($baseDir . '/src/Model/Dao/Repository'),
     'Ppo\\Model\\Entity\\' => array($baseDir . '/src/Model/Dao/Entity'),
     'Ppo\\Model\\Database\\' => array($baseDir . '/src/Model/Dao/Database'),
+    'Ppo\\Controller\\' => array($baseDir . '/src/Controller'),
     'Ppo\\' => array($baseDir . '/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Ppo\Controller\Test;
+namespace Ppo\Controller;
 
 class Test
 {
@@ -10,6 +10,7 @@ class Test
     public function __construct($router)
     {
         $this->router = $router;
+        echo '<h1>TEST<h1> <br>';
     }
 
     public function home(): void
@@ -19,9 +20,9 @@ class Test
         echo "<p>", $this->router->route("name.hello"), "</p>";
     }
 
-    public function hello($data): void
+    public function hello(): void
     {
         echo "<h1> Hello from Test <h1>";
-        var_dump($data);
     }
 }
+  
