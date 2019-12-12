@@ -18,7 +18,8 @@
             "Ppo\\": "src/",
             "Ppo\\Model\\Database\\": "src/Model/Dao/Database",
             "Ppo\\Model\\Repository\\": "src/Model/Dao/Repository",
-            "Ppo\\Model\\Entity\\": "src/Model/Dao/Entity"
+            "Ppo\\Model\\Entity\\": "src/Model/Dao/Entity",
+            "Ppo\\Controller\\": "src/Controller"
         }
     }, 
     "autoload-dev": {
@@ -28,7 +29,9 @@
     },
     "require": {
         "php": "^7.3",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+
+        "coffeecode/router": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.4"

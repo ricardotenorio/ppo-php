@@ -31,7 +31,6 @@ use PHPUnit\Util\Printer;
 use PHPUnit\Util\TestDox\CliTestDoxPrinter;
 use PHPUnit\Util\TextTestListRenderer;
 use PHPUnit\Util\XmlTestListRenderer;
-use ReflectionClass;
 use SebastianBergmann\FileIterator\Facade as FileIteratorFacade;
 
 use Throwable;
@@ -803,6 +802,7 @@ class Command
 
             if (isset($this->arguments['test']) &&
                 \is_file($this->arguments['test']) &&
+                \strrpos($this->arguments['test'], '.') !== false &&
                 \substr($this->arguments['test'], -5, 5) !== '.phpt') {
                 $this->arguments['testFile'] = \realpath($this->arguments['test']);
                 $this->arguments['test']     = \substr($this->arguments['test'], 0, \strrpos($this->arguments['test'], '.'));
@@ -955,7 +955,8 @@ class Command
 
         if (\class_exists($loaderClass, false)) {
             try {
-                $class = new ReflectionClass($loaderClass);
+                $class = new \ReflectionClass($loaderClass);
+                // @codeCoverageIgnoreStart
             } catch (\ReflectionException $e) {
                 throw new Exception(
                     $e->getMessage(),
@@ -963,6 +964,7 @@ class Command
                     $e
                 );
             }
+            // @codeCoverageIgnoreEnd
 
             if ($class->implementsInterface(TestSuiteLoader::class) && $class->isInstantiable()) {
                 $object = $class->newInstance();
@@ -1018,13 +1020,15 @@ class Command
         }
 
         try {
-            $class = new ReflectionClass($printerClass);
+            $class = new \ReflectionClass($printerClass);
+            // @codeCoverageIgnoreStart
         } catch (\ReflectionException $e) {
             throw new Exception(
                 $e->getMessage(),
                 (int) $e->getCode(),
                 $e
             );
+            // @codeCoverageIgnoreEnd
         }
 
         if (!$class->implementsInterface(TestListener::class)) {
