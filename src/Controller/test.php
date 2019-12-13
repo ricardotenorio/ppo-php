@@ -3,21 +3,29 @@ declare(strict_types = 1);
 
 namespace Ppo\Controller;
 
+use League\Plates\Engine;
+use Ppo\Model\Entity\Postagem;
+use Ppo\Model\Repository\PostagemRepository;
+
 class Test
 {
     private $router;
+    private $templates;
 
     public function __construct($router)
     {
         $this->router = $router;
-        echo '<h1>TEST<h1> <br>';
+        $this->templates = Engine::create(__DIR__ . "/../../res", "php");
     }
 
     public function home(): void
     {
-        echo "<p>home || test<p>";
-        echo "<p>", $this->router->route("name.home"), "</p>";
-        echo "<p>", $this->router->route("name.hello"), "</p>";
+        $postagemRep = new PostagemRepository();
+        $postagens = $postagemRep->listAll();
+        echo $this->templates->render("home", [
+            "title" => "Home",
+            "postagens" => $postagens
+        ]);
     }
 
     public function hello(): void
