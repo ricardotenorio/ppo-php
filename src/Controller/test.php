@@ -31,7 +31,10 @@ class Test
 
     public function hello(): void
     {
-        echo "<h1> Hello from Test <h1>";
+        echo $this->templates->render("_base", [
+            "title" => "Hello", 
+            "router" => $this->router
+        ]);
     }
 }
   

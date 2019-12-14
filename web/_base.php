@@ -25,19 +25,19 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="<?= $router->route("web.home") ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Postagens</a>
+                        <a class="nav-link" href="<?= $router->route("web.postagens") ?>">Postagens</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Listas</a>
+                        <a class="nav-link" href="<?= $router->route("web.listas") ?>">Listas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">disciplinas</a>
+                        <a class="nav-link" href="<?= $router->route("web.disciplinas") ?>">disciplinas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Assuntos</a>
+                        <a class="nav-link" href="<?= $router->route("web.assuntos") ?>">Assuntos</a>
                     </li>
                 </ul>
             </div>
@@ -45,10 +45,10 @@
             <div class="justify-content-right">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link active bg-danger m-2" href="#">Sign-up</a>
+                        <a class="nav-link active bg-danger m-2" href="<?= $router->route("web.signup") ?>">Sign-up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active bg-info m-2" href="#">Login</a>
+                        <a class="nav-link active bg-info m-2" href="<?= $router->route("web.login") ?>">Login</a>
                     </li>
                 </ul>
             </div>
