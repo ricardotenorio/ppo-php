@@ -15,7 +15,7 @@ class Test
     public function __construct($router)
     {
         $this->router = $router;
-        $this->templates = Engine::create(__DIR__ . "/../../res", "php");
+        $this->templates = Engine::create(__DIR__ . "/../../web", "php");
     }
 
     public function home(): void
@@ -24,7 +24,8 @@ class Test
         $postagens = $postagemRep->listAll();
         echo $this->templates->render("home", [
             "title" => "Home",
-            "postagens" => $postagens
+            "postagens" => $postagens,
+            "router" => $this->router
         ]);
     }
 

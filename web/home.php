@@ -1,3 +1,4 @@
+<?php $v->layout("_base") ?>
 
 <div class="postagens">
     <?php 
@@ -15,4 +16,9 @@
         <?php
         endif;
     ?>
+</div>
+
+<div>
+        <a href="<?= $router->route("web.home") ?>">Voltar</a>
+        <a href="<?= $router->route("test.hello") ?>">Hello</a>
 </div>

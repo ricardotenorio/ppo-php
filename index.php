@@ -1,5 +1,6 @@
 <?php 
 	require __DIR__ . "/vendor/autoload.php";
+	require __DIR__ . "/src/config.php";
 
 	use Ppo\Controller\Test;
 	use CoffeeCode\Router\Router;
@@ -11,7 +12,7 @@
 	$router->get("/", function() 
 		{
 			echo "<h1> home <h1>";
-		}
+		}, "web.home"
 	);
 
 	$router->group("test")->namespace("Ppo\Controller");
