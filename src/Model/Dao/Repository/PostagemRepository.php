@@ -39,11 +39,11 @@
             return $postagem;
         }
 
-        public function save(Postagem $postagem): void
+        public function save(Postagem $postagem): ?int
         {
             if (empty($postagem->getId())) {
-                $postagem->setDataCriacao(date("Y-m-d H:i:s"));
-                $this->insert("postagem", $postagem->getData());
+                $id = $this->insert("postagem", $postagem->getData());
+                return $id;
             } else {
                 $this->update("postagem", $postagem->getData(), array("id" => $postagem->getId()));
             }
