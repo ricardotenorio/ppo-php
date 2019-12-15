@@ -4,26 +4,36 @@ declare(strict_types = 1);
 namespace Ppo\Model;
 
 use Ppo\Model\Entity\Usuario;
+use Ppo\Model\Entity\Lista;
 use Ppo\Model\Repository\UsuarioRepository;
 
 class UsuarioModel
 {
+    private $repository;
+
+    public function __construct()
+    {
+        $this->repository = new UsuarioRepository();
+    }
 
     public function registerUsuario(string $nome, string $email, string $senha,
         string $dataCriacao = null, Permissao $permissao): ?Usuario
     {
-        $repository = new UsuarioRepository();
-
-        if ($repository->verifyNome($nome) || $repository->verifyEmail($email)) {
+        if ($this->repository->verifyNome($nome) || $this->repository->verifyEmail($email)) {
             return null;
         }
 
+        // ...Mudar depois...
+        $senha = md5($senha);
+
         $usuario = new Usuario(null, $nome, $email, $senha, date("Y-m-d"), $permissao);
 
-        $id = $repository->save($usuario);
+        $id = $this->repository->save($usuario);
 
         if (isset($id)) {
             $usuario->setId($id);
+            $lista = new Lista("Favoritos", "Lista com suas postagens favoritas.", null, $usuario);
+            $usuario->addLista($lista);
             return $usuario;
         }
 
@@ -32,14 +42,14 @@ class UsuarioModel
 
     public function updateUsuario(Usuario $usuario): void
     {
-        $repository = new UsuarioRepository();
-        $repository->save($usuario);
+        $this->repository->save($usuario);
     }
 
     public function login(string $nome, string $senha): ?Usuario
     {
-        $repository = new UsuarioRepository();
-        $usuario = $repository->searchByLogin($nome, $senha);
+        // .......
+        $senha = md5($senha);
+        $usuario = $this->repository->searchByLogin($nome, $senha);
 
         return $usuario;
     }

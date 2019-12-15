@@ -19,8 +19,8 @@ class Usuario extends AbstractEntity
         array $postagens = null, array $listas = null)
     {
         $this->id = $id;
-        $this->nome = $nome;
-        $this->email = $email;
+        $this->$nome = preg_replace('/\s+/', '', $nome);
+        $this->email = preg_replace('/\s+/', '', $email);
         $this->senha = $senha;
         $this->dataCriacao = $dataCriacao;
         $this->permissao = $permissao;

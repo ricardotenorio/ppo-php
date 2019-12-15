@@ -4,31 +4,35 @@ declare(strict_types = 1);
 namespace Ppo\Model;
 
 use Ppo\Model\Entity\Postagem;
+use Ppo\Model\Entity\Assunto;
 use Ppo\Model\Repository\PostagemRepository;
 
 class PostagemModel
 {
-    public function registerPostagem(string $tipo, string $link, string $titulo,
-        string $descricao = null, int $votos = 0, Usuario $usuario, Assunto $assunto): void
-    {
-        $repository = new PostagemRepository();
+    private $repository;
 
-        $postagem = new Postagem(null, $tipo, $link, $titulo, $descricao, $votos, date("Y-m-d"),
+    public function __construct()
+    {
+        $this->repository = new PostagemRepository();
+    }
+
+    public function createPostagem(string $tipo, string $link, string $titulo,
+        string $descricao = null, Usuario $usuario, Assunto $assunto): void
+    {
+        $postagem = new Postagem(null, $tipo, $link, $titulo, $descricao, 0, date("Y-m-d"),
             $usuario, $assunto);
 
-        $repository->save($postagem);
+        $this->repository->save($postagem);
     }
 
     public function updatePostagem(Postagem $postagem): void
     {
-        $repository = new PostagemRepository();
-        $repository->save($postagem);
+        $this->repository->save($postagem);
     }
 
     public function getPostagens(): ?array
     {
-        $repository = new PostagemRepository();
-        $postagens = $repository->listAll();
+        $postagens = $this->repository->listAll();
 
         return $postagens;
     }
@@ -38,8 +42,7 @@ class PostagemModel
         if (!isset($usuario)) {
             return null;
         }
-        $repository = new PostagemRepository();
-        $postagens = $repository->searchByUsuario($usuario);
+        $postagens = $this->repository->searchByUsuario($usuario);
 
         return $postagens;
     }
@@ -49,19 +52,17 @@ class PostagemModel
         if (!isset($assunto)) {
             return null;
         }
-        $repository = new PostagemRepository();
-        $postagens = $repository->searchByAssunto($assunto);
+        $postagens = $this->repository->searchByAssunto($assunto);
 
         return $postagens;
     }
 
-    public function removePostagem(Postagem $postagem): void
+    public function deletePostagem(Postagem $postagem): void
     {
         if (!isset($postagem)) {
             return;
         }
-        $repository = new PostagemRepository();
-        $postagens = $repository->delete($postagem);
+        $postagens = $this->repository->delete($postagem);
     }
 }
   
