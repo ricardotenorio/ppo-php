@@ -22,8 +22,6 @@
 
 	$router->dispatch();
 
-	//echo "<pre>", var_dump($router), "<pre>";
-
 	if ($router->error()) {
 		var_dump($router->error());
 	}

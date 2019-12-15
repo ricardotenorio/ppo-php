@@ -16,7 +16,7 @@
             echo $v-section("menu");
         else:
             ?>
-            <a class="navbar-brand h1" href="#">Project</a>
+            <a class="navbar-brand h1" href="<?= $router->route("web.home") ?>">Project</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon">
