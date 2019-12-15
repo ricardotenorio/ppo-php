@@ -15,6 +15,7 @@ return array(
     'Ppo\\Model\\Database\\' => array($baseDir . '/src/Model/Dao/Database'),
     'Ppo\\Controller\\' => array($baseDir . '/src/Controller'),
     'Ppo\\' => array($baseDir . '/src'),
+    'League\\Plates\\' => array($vendorDir . '/league/plates/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'CoffeeCode\\Router\\' => array($vendorDir . '/coffeecode/router/src'),
