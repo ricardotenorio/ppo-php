@@ -49,13 +49,13 @@
 
                 <?php if (isset($_SESSION["username"])):
                     ?>
-                    <button type="button" class="btn btn-dark"> <?= $_SESSION["username"] ?> </button>
+                    <button type="button" class="btn btn-info"> <?= $_SESSION["username"] ?> </button>
                     <?php
                 else:
                     ?>
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active bg-danger m-2" href="<?= $router->route("web.signup") ?>">Sign-up</a>
+                            <a class="nav-link active bg-danger m-2" href="<?= $router->route("signup.page") ?>">Sign-up</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active bg-info m-2" href="<?= $router->route("login.page") ?>">Login</a>

@@ -16,10 +16,10 @@ class Usuario extends AbstractEntity
 
     public function __construct(int $id = null, string $nome, string $email,
         string $senha, string $dataCriacao = null, Permissao $permissao,
-        array $postagens = null, array $listas = null)
+        array $postagens = null, array $listas = array())
     {
         $this->id = $id;
-        $this->$nome = preg_replace('/\s+/', '', $nome);
+        $this->nome = preg_replace('/\s+/', '', $nome);
         $this->email = preg_replace('/\s+/', '', $email);
         $this->senha = $senha;
         $this->dataCriacao = $dataCriacao;
