@@ -48,7 +48,7 @@
                         <a class="nav-link active bg-danger m-2" href="<?= $router->route("web.signup") ?>">Sign-up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active bg-info m-2" href="<?= $router->route("web.login") ?>">Login</a>
+                        <a class="nav-link active bg-info m-2" href="<?= $router->route("login.page") ?>">Login</a>
                     </li>
                 </ul>
             </div>
@@ -63,8 +63,8 @@
         </main>
     </div>
 
-    <footer class="nav fixed-bottom bg-dark mt-5">
-        <p class="m-auto text-white h3 p-5">Project | 2019</p>
+    <footer class="nav fixed-bottom bg-dark mt-auto">
+        <p class="m-auto text-white h4 p-5">Project | 2019</p>
     </footer>   
 
     <script src="<?= url("/web/js/jquery-3.4.1.slim.min.js") ?>"></script>
