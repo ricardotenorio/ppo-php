@@ -9,7 +9,7 @@ class Disciplina extends AbstractEntity
     private $nome;
     private $assuntos;
 
-    public function __construct(int $id = null, string $nome, array $assuntos)
+    public function __construct(int $id = null, string $nome, array $assuntos = null)
     {
         $this->id = $id;
         $this->nome = $nome;

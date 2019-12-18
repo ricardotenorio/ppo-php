@@ -38,6 +38,7 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
             'Ppo\\Model\\Repository\\' => 21,
             'Ppo\\Model\\Entity\\' => 17,
             'Ppo\\Model\\Database\\' => 19,
+            'Ppo\\Model\\' => 10,
             'Ppo\\Controller\\' => 15,
             'Ppo\\' => 4,
         ),
@@ -86,6 +87,10 @@ class ComposerStaticInit1a88025208b43c45dc8b73731fc8efcd
         'Ppo\\Model\\Database\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Model/Dao/Database',
+        ),
+        'Ppo\\Model\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Model',
         ),
         'Ppo\\Controller\\' => 
         array (

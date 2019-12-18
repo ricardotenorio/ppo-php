@@ -13,6 +13,7 @@ return array(
     'Ppo\\Model\\Repository\\' => array($baseDir . '/src/Model/Dao/Repository'),
     'Ppo\\Model\\Entity\\' => array($baseDir . '/src/Model/Dao/Entity'),
     'Ppo\\Model\\Database\\' => array($baseDir . '/src/Model/Dao/Database'),
+    'Ppo\\Model\\' => array($baseDir . '/src/Model'),
     'Ppo\\Controller\\' => array($baseDir . '/src/Controller'),
     'Ppo\\' => array($baseDir . '/src'),
     'League\\Plates\\' => array($vendorDir . '/league/plates/src'),

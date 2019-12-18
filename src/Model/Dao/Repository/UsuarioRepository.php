@@ -42,11 +42,11 @@
             return $usuario;
         }
 
-        public function save(Usuario $usuario): void
+        public function save(Usuario $usuario): ?int
         {
             if (empty($usuario->getId())) {
-                $usuario->setDataCriacao(date("Y-m-d"));
-                $this->insert("usuario", $usuario->getData());
+                $id = $this->insert("usuario", $usuario->getData());
+                return $id;
             } else {
                 $this->update("usuario", $usuario->getData(), array("id" => $usuario->getId()));
             }
@@ -96,6 +96,14 @@
             return $usuarios;
         }
 
+        public function searchByLogin(string $nome, string $senha): ?Usuario
+        {
+            $data = $this->fetch("usuario", null, array("nome" => $nome, "senha" => $senha));
+            $usuario = $this->createObject($data);
+
+            return $usuario;
+        }
+
         public function listAll(): ?array
         {
             $data = $this->fetchAll("usuario");
@@ -106,5 +114,27 @@
             }
 
             return $usuarios;
+        }
+
+        public function verifyNome(string $nome): bool
+        {
+            $data = $this->fetch("usuario", null, array("nome" => $nome));
+
+            if ($data) {
+                return true;
+            }
+
+            return false;
+        }
+
+        public function verifyEmail(string $email): bool
+        {
+            $data = $this->fetch("usuario", null, array("email" => $email));
+
+            if ($data) {
+                return true;
+            }
+
+            return false;
         }
     }

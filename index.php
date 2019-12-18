@@ -5,8 +5,7 @@
 	use Ppo\Controller\Test;
 	use CoffeeCode\Router\Router;
 
-	define("BASE", "http://localhost/ppo-php");
-	$router = new Router(BASE);
+	$router = new Router(ROOT);
 
 	$router->group("");
 	$router->get("/", function() 
