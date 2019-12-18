@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -43,14 +46,24 @@
             </div>
 
             <div class="justify-content-right">
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="nav-link active bg-danger m-2" href="<?= $router->route("web.signup") ?>">Sign-up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active bg-info m-2" href="<?= $router->route("login.page") ?>">Login</a>
-                    </li>
-                </ul>
+
+                <?php if (isset($_SESSION["username"])):
+                    ?>
+                    <button type="button" class="btn btn-dark"> <?= $_SESSION["username"] ?> </button>
+                    <?php
+                else:
+                    ?>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active bg-danger m-2" href="<?= $router->route("web.signup") ?>">Sign-up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active bg-info m-2" href="<?= $router->route("login.page") ?>">Login</a>
+                        </li>
+                    </ul>
+                    <?php
+                endif
+                ?>
             </div>
         <?php
         endif; 
