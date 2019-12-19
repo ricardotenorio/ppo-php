@@ -18,6 +18,7 @@
 	$router->group("login");
 	$router->get("/", "Login:page", "login.page");
 	$router->post("/", "Login:loginAction", "login.loginAction");
+	$router->get("/logout", "Login:logoutAction", "login.logoutAction");
 
 	$router->group("signup");
 	$router->get("/", "Signup:page", "signup.page");

@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if (session_status() != PHP_SESSION_ACTIVE) {
+        session_start();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -49,7 +51,14 @@
 
                 <?php if (isset($_SESSION["username"])):
                     ?>
-                    <button type="button" class="btn btn-info"> <?= $_SESSION["username"] ?> </button>
+                    <button type="button" class="btn btn-info"
+                        data-toggle="collapse" data-target="#navbarLoginContent"> <?= $_SESSION["username"] ?> </button>
+                    
+                    <ul class="collapse justify-content-center navbar-nav" id="navbarLoginContent">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $router->route("login.logoutAction") ?>">Sair</a>
+                        </li>
+                    </ul>
                     <?php
                 else:
                     ?>

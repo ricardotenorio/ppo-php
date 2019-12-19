@@ -45,6 +45,8 @@
                 $lista->setDataCriacao(date("Y-m-d H:i:s"));
                 $id = $this->insert("lista", $lista->getData());
                 $lista->setId($id);
+
+                return;
             } else {
                 $this->update("lista", $lista->getData(), array("id" => $lista->getId()));
             }
@@ -123,7 +125,10 @@
         }
 
         private function saveConteudo(Lista $lista, array $data): void
-        {    
+        {   
+            if (empty($lista->getPostagens())) {
+                return;
+            } 
             foreach ($lista->getPostagens() as $i => $postagem) {
                 $save = true;
                 foreach ($data as $j => $conteudo) {
@@ -141,6 +146,9 @@
 
         private function deleteConteudo(Lista $lista, array $data): void
         {
+            if (empty($lista->getPostagens())) {
+                return;
+            } 
             $size = sizeof($lista->getPostagens());
             if (empty($data)){
                 return;

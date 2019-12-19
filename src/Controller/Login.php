@@ -46,5 +46,19 @@ class Login
         }
         
     }
+
+    public function logoutAction($data): void
+    {
+        if (session_status() != PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        session_destroy();
+
+        echo $this->template->render("home", [
+            "title" => "Home",
+            "router" => $this->router
+        ]);
+    }
 }
   

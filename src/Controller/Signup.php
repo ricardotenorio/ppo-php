@@ -51,5 +51,32 @@ class Signup
         }
         
     }
+
+    public function checkNome(string $nome): ?string 
+    {
+        if (Usuario::validNome($nome)) {
+            return null;
+        }
+
+        return "Nome de usuário inválido";
+    }
+
+    public function checkEmail(string $email): ?string 
+    {
+        if (Usuario::validEmail($email)) {
+            return null;
+        }
+
+        return "Endereço de email inválido";   
+    }
+
+    public function checkSenha(string $senha): ?string 
+    {
+        if (Usuario::validSenha($senha)) {
+            return null;
+        }
+
+        return "A senha deve conter 6 ou mais caracteres";
+    }
 }
   
