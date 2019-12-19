@@ -7,7 +7,7 @@ use League\Plates\Engine;
 use Ppo\Model\UsuarioModel;
 use Ppo\Model\PermissaoModel;
 
-class Signup
+class SignupController
 {
     private $router;
     private $template;

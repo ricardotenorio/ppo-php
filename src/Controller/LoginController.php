@@ -6,7 +6,7 @@ namespace Ppo\Controller;
 use League\Plates\Engine;
 use Ppo\Model\UsuarioModel;
 
-class Login
+class LoginController
 {
     private $router;
     private $template;
