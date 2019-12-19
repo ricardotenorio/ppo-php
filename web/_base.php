@@ -1,3 +1,8 @@
+<?php
+    if (session_status() != PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -43,14 +48,31 @@
             </div>
 
             <div class="justify-content-right">
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="nav-link active bg-danger m-2" href="<?= $router->route("web.signup") ?>">Sign-up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active bg-info m-2" href="<?= $router->route("web.login") ?>">Login</a>
-                    </li>
-                </ul>
+
+                <?php if (isset($_SESSION["username"])):
+                    ?>
+                    <button type="button" class="btn btn-info"
+                        data-toggle="collapse" data-target="#navbarLoginContent"> <?= $_SESSION["username"] ?> </button>
+                    
+                    <ul class="collapse justify-content-center navbar-nav" id="navbarLoginContent">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $router->route("login.logoutAction") ?>">Sair</a>
+                        </li>
+                    </ul>
+                    <?php
+                else:
+                    ?>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active bg-danger m-2" href="<?= $router->route("signup.page") ?>">Sign-up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active bg-info m-2" href="<?= $router->route("login.page") ?>">Login</a>
+                        </li>
+                    </ul>
+                    <?php
+                endif
+                ?>
             </div>
         <?php
         endif; 
@@ -63,8 +85,8 @@
         </main>
     </div>
 
-    <footer class="nav fixed-bottom bg-dark mt-5">
-        <p class="m-auto text-white h3 p-5">Project | 2019</p>
+    <footer class="nav fixed-bottom bg-dark mt-auto">
+        <p class="m-auto text-white h4 p-5">Project | 2019</p>
     </footer>   
 
     <script src="<?= url("/web/js/jquery-3.4.1.slim.min.js") ?>"></script>

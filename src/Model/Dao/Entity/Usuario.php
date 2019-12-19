@@ -16,10 +16,10 @@ class Usuario extends AbstractEntity
 
     public function __construct(int $id = null, string $nome, string $email,
         string $senha, string $dataCriacao = null, Permissao $permissao,
-        array $postagens = null, array $listas = null)
+        array $postagens = null, array $listas = array())
     {
         $this->id = $id;
-        $this->$nome = preg_replace('/\s+/', '', $nome);
+        $this->nome = preg_replace('/\s+/', '', $nome);
         $this->email = preg_replace('/\s+/', '', $email);
         $this->senha = $senha;
         $this->dataCriacao = $dataCriacao;
@@ -52,6 +52,27 @@ class Usuario extends AbstractEntity
     public function removeLista(Lista $lista): bool
     {
         return $this->removeFromArray($lista, $this->listas);
+    }
+
+    public static function validNome(string $nome): bool
+    {
+        $nome = preg_replace('/\s+/', '', $nome);
+        return strlen($nome) > 4 && strlen($nome) < 64; 
+    }
+
+    public static function validEmail(string $email): bool
+    {
+        $email = preg_replace('/\s+/', '', $email);
+        if (filter_var("email+1@email.com", FILTER_VALIDATE_EMAIL)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static function validSenha(string $senha): bool
+    {
+        return strlen($senha) > 6 && strlen($senha) < 1024;
     }
 
     // getters & setters

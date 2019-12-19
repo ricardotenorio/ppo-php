@@ -7,6 +7,7 @@
 
 	$router = new Router(ROOT);
 
+	$router->namespace("Ppo\Controller");
 	$router->group("");
 	$router->get("/", function() 
 		{
@@ -14,7 +15,16 @@
 		}, "web.home"
 	);
 
-	$router->group("test")->namespace("Ppo\Controller");
+	$router->group("login");
+	$router->get("/", "Login:page", "login.page");
+	$router->post("/", "Login:loginAction", "login.loginAction");
+	$router->get("/logout", "Login:logoutAction", "login.logoutAction");
+
+	$router->group("signup");
+	$router->get("/", "Signup:page", "signup.page");
+	$router->post("/", "Signup:signupAction", "signup.signupAction");
+
+	$router->group("test");
 
 	$router->get("/", "Test:home");
 	$router->get("/hello", "Test:hello", "test.hello");
