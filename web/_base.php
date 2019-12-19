@@ -33,7 +33,7 @@
                         <a class="nav-link" href="<?= $router->route("web.home") ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->route("web.postagens") ?>">Postagens</a>
+                        <a class="nav-link" href="<?= $router->route("postagens.page") ?>">Postagens</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= $router->route("web.listas") ?>">Listas</a>
