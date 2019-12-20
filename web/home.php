@@ -1,4 +1,4 @@
-<?php $v->layout("_base") ?>
+<?php $v->layout("_base"); ?>
 
 <div class="postagens">
     <?php 

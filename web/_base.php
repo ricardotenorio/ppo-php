@@ -1,7 +1,7 @@
 <?php
-    if (session_status() != PHP_SESSION_ACTIVE) {
+    if (session_status() != PHP_SESSION_ACTIVE):
         session_start();
-    }
+    endif;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -56,6 +56,9 @@
                     
                     <ul class="collapse justify-content-center navbar-nav" id="navbarLoginContent">
                         <li class="nav-item">
+                            <a class="nav-link" href="<?= $router->route("postagens.create") ?>">Nova Postagem</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="<?= $router->route("login.logoutAction") ?>">Sair</a>
                         </li>
                     </ul>
@@ -71,7 +74,7 @@
                         </li>
                     </ul>
                     <?php
-                endif
+                endif;
                 ?>
             </div>
         <?php
