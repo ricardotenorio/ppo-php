@@ -88,11 +88,11 @@
         </main>
     </div>
 
-    <footer class="nav fixed-bottom bg-dark mt-auto">
-        <p class="m-auto text-white h4 p-5">Project | 2019</p>
+    <footer id="footer">
+        <h4>Project | 2019</h4>
     </footer>   
 
     <script src="<?= url("/web/js/jquery-3.4.1.slim.min.js") ?>"></script>
-    <script src="<?= url("/web/js/bootstrap.js") ?>"></script>
+    <script src="<?= url("/web/js/bootstrap.bundle.js") ?>"></script>
 </body>
 </html>

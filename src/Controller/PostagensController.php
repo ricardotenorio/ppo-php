@@ -6,6 +6,7 @@ namespace Ppo\Controller;
 use League\Plates\Engine;
 use Ppo\Model\PostagemModel;
 use Ppo\Model\PermissaoModel;
+use Ppo\Model\DisciplinaModel;
 
 class PostagensController
 {
@@ -33,8 +34,12 @@ class PostagensController
 
     public function createPostagemPage($data): void 
     {
+        $disciplinaModel = new DisciplinaModel();
+        $disciplinas = $disciplinaModel->getDisciplinas();
+
         echo $this->template->render("createPostagem", [
             "title" => "Criar Postagem",
+            "disciplinas" => $disciplinas,
             "data" => $data,
             "router" => $this->router
         ]);
