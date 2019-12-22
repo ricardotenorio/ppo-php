@@ -37,10 +37,7 @@ class LoginController
             $_SESSION["username"] = $usuario->getNome();
             $_SESSION["user_id"] = $usuario->getId();
 
-            echo $this->template->render("home", [
-                "title" => "Home",
-                "router" => $this->router
-            ]);
+            echo $this->router->redirect("postagens.page");
         } else {
             $this->page(array("error" => "Nome de usuário/senha inválidos"));
         }

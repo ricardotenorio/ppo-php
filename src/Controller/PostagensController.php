@@ -4,9 +4,11 @@ declare(strict_types = 1);
 namespace Ppo\Controller;
 
 use League\Plates\Engine;
+use Ppo\Model\Entity\Postagem;
 use Ppo\Model\PostagemModel;
 use Ppo\Model\PermissaoModel;
 use Ppo\Model\DisciplinaModel;
+use Ppo\Model\AssuntoModel;
 
 class PostagensController
 {
@@ -48,15 +50,30 @@ class PostagensController
     public function createPostagemAction($data): void
     {
         $data["link"] = Postagem::checkUrlProtocol($data["link"]);
-        if (!checkLink($data["link"])) {
+
+        if (!$this->checkLink($data["link"])) {
             $this->createPostagemPage(array("error" => "Url inválida!"));
         } else {
-            $postagemModel = new PostagemModel();
+            $assuntoNome = trim($data["assunto"]);
+            $assuntoNome = ucfirst(strtolower($assuntoNome));
+            $assuntoModel = new AssuntoModel();
+            $assunto = $assuntoModel->getAssuntoByNome($assuntoNome);
+            
+            if (!isset($assunto)) {
+                $disciplinaModel = new DisciplinaModel();
+                $disciplina = $disciplinaModel->getDisciplinaByNome($data["disciplina"]);
+                $assunto = $assuntoModel->createAssunto($assuntoNome, $disciplina);
+            }
+
+            session_start();
             $usuario = unserialize($_SESSION["usuario"]);
+            $postagemModel = new PostagemModel();
             
             $postagemModel->createPostagem($data["tipo"], $data["link"], $data["titulo"], $data["descricao"],
-                $usuario, $data["assunto"]);
-        } 
+                $usuario, $assunto);
+        }
+
+        $this->router->redirect("postagens.page");
     }
 
     public function checkLink(string $link): bool

@@ -23,7 +23,7 @@ class Postagem extends AbstractEntity
         $this->tipo = $tipo;
         $this->link = $link;
         $this->titulo = $titulo;
-        $this->escricao = $descricao;
+        $this->descricao = $descricao;
         $this->votos = $votos;
         $this->dataCriacao = $dataCriacao;
         $this->usuario = $usuario;

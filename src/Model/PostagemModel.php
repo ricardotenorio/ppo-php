@@ -5,6 +5,7 @@ namespace Ppo\Model;
 
 use Ppo\Model\Entity\Postagem;
 use Ppo\Model\Entity\Assunto;
+use Ppo\Model\Entity\Usuario;
 use Ppo\Model\Repository\PostagemRepository;
 
 class PostagemModel
@@ -19,7 +20,7 @@ class PostagemModel
     public function createPostagem(string $tipo, string $link, string $titulo,
         string $descricao = null, Usuario $usuario, Assunto $assunto): void
     {
-        $postagem = new Postagem(null, $tipo, $link, $titulo, $descricao, 0, date("Y-m-d"),
+        $postagem = new Postagem(null, $tipo, $link, $titulo, $descricao, 0, date("Y-m-d H:i:s"),
             $usuario, $assunto);
 
         $this->repository->save($postagem);

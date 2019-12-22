@@ -9,10 +9,15 @@
 ?>
 
 <div class="content row justify-content-center">
+    <?php if (isset($data["error"])):
+        ?>
+        <p class="bg-danger"><?= $data["error"] ?></p>
+        <?php
+        endif ?>
 
     <h2 class="text-center col-12">Criar nova postagem</h2>
     <div class="jumbotron text-center col-sm-12 col-md-8">
-        <form action="<?= url("createPostagem") ?>" method="POST">
+        <form action="<?= url("postagens/create") ?>" method="POST">
 
             <div class="form-group col-12">
                 <label for="titulo">Título</label>
@@ -27,11 +32,13 @@
                 <div class="dropdown-menu col-sm-10 col-md-5" aria-labelledby="dropdownDisciplinas">
                     <?php 
                         if ($disciplinas):
+                            $count = 0;
                             foreach($disciplinas as $disciplina):
                                 $nomeDisciplina = $disciplina->getNome();
                                 ?>
                                 <div class="form-check form-check-inline col-12">
-                                    <input class="form-input-check dropdown-item col-3" type="radio" id="<?= $nomeDisciplina; ?>" name="disciplina" value="<?= $nomeDisciplina; ?>">
+                                    <input class="form-input-check dropdown-item col-3" type="radio" 
+                                        id="<?= $nomeDisciplina; ?>" name="disciplina" value="<?= $nomeDisciplina; ?>" <?php if ($count++ == 0): echo "checked"; endif; ?>>
                                     <label class="form-check-label dropdown-item col-8" for="<?= $nomeDisciplina; ?>">
                                         <?= $nomeDisciplina; ?>
                                     </label>
@@ -55,7 +62,7 @@
 
             <h6 class="h6">Tipo de Mídia</h6>
 
-            <div class="form-group">
+            <div class="form-group ">
 
                 <div class="form-check form-check-inline col-12">
                     <input class="form-input-check col-1" type="radio" id="video" name="tipo" value="video" checked>
