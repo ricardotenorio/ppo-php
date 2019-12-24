@@ -28,6 +28,7 @@
 	$router->get("/", "PostagensController:page", "postagens.page");
 	$router->get("/create", "PostagensController:createPostagemPage", "postagens.create");
 	$router->post("/create", "PostagensController:createPostagemAction", "postagens.createAction");
+	$router->get("/minhas-postagens", "PostagensController:minhasPostagensPage", "postagens.usuario");
 
 	$router->group("test");
 

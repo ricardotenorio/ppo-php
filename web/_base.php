@@ -59,6 +59,9 @@
                             <a class="nav-link" href="<?= $router->route("postagens.create") ?>">Nova Postagem</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="<?= $router->route("postagens.usuario") ?>">Minhas Postagens</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="<?= $router->route("login.logoutAction") ?>">Sair</a>
                         </li>
                     </ul>

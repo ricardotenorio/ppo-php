@@ -47,6 +47,24 @@ class PostagensController
         ]);
     }
 
+    public function minhasPostagensPage($data): void
+    {
+        $postagemModel = new PostagemModel();
+        session_start();
+        $usuario = unserialize($_SESSION["usuario"]);
+        if (!isset($usuario)) {
+            $this->router->redirect("postagens.page", array("error" => "Você precisa estar logado para visualizar essa página"));
+        }
+        $postagens = $postagemModel->getPostagensByUsuario($usuario);
+
+        echo $this->template->render("minhas_postagens", [
+            "title" => "Minhas Postagens",
+            "postagens" => $postagens,
+            "data" => $data,
+            "router" => $this->router
+        ]);
+    }
+
     public function createPostagemAction($data): void
     {
         $data["link"] = Postagem::checkUrlProtocol($data["link"]);
@@ -74,6 +92,31 @@ class PostagensController
         }
 
         $this->router->redirect("postagens.page");
+    }
+
+    public function updatePostagemAction($data): void
+    {
+        session_start();
+        $usuario = unserialize($_SESSION["usuario"]);
+        $postagemId = $_SESSION["postagem_id"];
+        $postagem = new Postagem($postagemId, $data["tipo"], $data["link"], $data["titulo"], $data["descricao"],
+            $usuario, $data["assunto"]);
+        $postagemModel = new PostagemModel();
+        $postagemModel->updatePostagem($postagem);
+        $this->router->redirect("postagens.page");
+    }
+
+    public function deletePostagemAction($data): void
+    {
+        session_start();
+        $usuario = unserialize($_SESSION["usuario"]);
+        $postagem = $data["postagem"];
+
+        if ($usuario == $postagem->getUsuario()) {
+            $postagemModel = new PostagemModel();
+            $postagemModel->deletePostagem($postagem);
+        }
+        $this->router->redirect("postagens.page", array("error" => "Você não possui permissão para editar essa postagem"));
     }
 
     public function checkLink(string $link): bool
