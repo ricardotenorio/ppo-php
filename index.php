@@ -31,7 +31,8 @@
 	$router->get("/create", "PostagensController:createPostagemPage", "postagens.create");
 	$router->post("/create", "PostagensController:createPostagemAction", "postagens.createAction");
 	$router->get("/minhas-postagens", "PostagensController:minhasPostagensPage", "postagens.usuario");
-	$router->get("/delete", "PostagensController:deletePostagemAction", "postagens.delete");
+	$router->post("/delete", "PostagensController:deletePostagemAction", "postagens.delete");
+	$router->post("/add", "PostagensController:addPostagemAction", "postagens.add");
 
 	$router->group("lista");
 	$router->get("/", "ListaController:page", "lista.page");
@@ -40,7 +41,6 @@
 	$router->get("/favoritos", "ListaController:favoritosPage", "lista.favoritosPage");
 
 	$router->group("test");
-
 	$router->get("/", "Test:home");
 	$router->get("/hello", "Test:hello", "test.hello");
 

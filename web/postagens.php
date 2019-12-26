@@ -26,11 +26,12 @@
                     <div class="card-footer text-center">
                         <p class="h6 font-weight-light">Postado por: <?= $postagem->getUsuario()->getNome(); ?></p>
                         <p class="h6 font-weight-light"><?= $postagem->getDataCriacao(); ?></p>
-                        <button type="button" class="btn btn-primary">Adicionar</button>
+                        <button type="button" class="btn btn-primary" data-action="<?= $router->route("postagens.add") ?>" 
+                            data-id="<?= $postagem->getId() ?>">Adicionar</button>
                         <?php if (isset($_SESSION["username"]) && $postagem->getUsuario()->getNome() == $_SESSION["username"]):
                             ?>
                             <button type="button" class="btn btn-info">Editar</button>
-                            <button type="button" class="btn btn-danger" data-action="<?= $router->route("postagens.delete") ?>" 
+                            <button type="button" class="btn btn-danger delete-post" data-action="<?= $router->route("postagens.delete") ?>" 
                                 data-id="<?= $postagem->getId() ?>">Deletar</button>
                             <?php
                             endif
@@ -41,8 +42,44 @@
             endforeach;
         else:
         ?>
-            <h2 class="h2">Não existem postagens</h2>
+            <h2 class="h2 text-center my-5 col-sm-10 col-md-12">Não existem postagens</h2>
         <?php
         endif;
     ?>
 </div>
+
+<?php $v->start("js"); ?>
+<script>
+    $(function() {
+        function load(action) {
+            var load_div = $(".ajax_load");
+            if (action === "open") {
+                load_div.fadeIn();   
+            } else {
+                load_div.fadeOut();
+            }
+        }
+
+        $("body").on("click", "[data-action]", function (e) {
+            e.preventDefault();
+            var data = $(this).data();
+            var div = $(this).parent().parent();
+
+            if ($(this).hasClass("delete-post")) {
+                var action = function() {
+                    div.fadeOut();
+                }
+            } else {
+                var action = function() {
+                   
+                }
+            }
+
+            $.post(data.action, data, action, "json").fail(function () {
+                console.log("error");
+            });
+        });
+    }
+    );
+</script>
+<?php $v->end(); ?>

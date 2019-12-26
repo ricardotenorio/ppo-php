@@ -5,10 +5,12 @@ namespace Ppo\Controller;
 
 use League\Plates\Engine;
 use Ppo\Model\Entity\Postagem;
+use Ppo\Model\Entity\Lista;
 use Ppo\Model\PostagemModel;
 use Ppo\Model\PermissaoModel;
 use Ppo\Model\DisciplinaModel;
 use Ppo\Model\AssuntoModel;
+use Ppo\Model\ListaModel;
 
 class PostagensController
 {
@@ -108,14 +110,52 @@ class PostagensController
 
     public function deletePostagemAction($data): void
     {
+        if (empty($data["id"])) {
+            return;
+        }
+        $id = filter_var($data["id"], FILTER_VALIDATE_INT);
         $usuario = unserialize($_SESSION["usuario"]);
-        $postagem = $data["postagem"];
+        $postagemModel = new PostagemModel();
+        $postagem = $postagemModel->getPostagemById($id);
+        
+        if (!isset($postagem)) {
+            $callback["msg"] = "Não foi possível remover a postagem";
+        }
 
         if ($usuario == $postagem->getUsuario()) {
-            $postagemModel = new PostagemModel();
             $postagemModel->deletePostagem($postagem);
+            $callback["remove"] = true;
         }
-        $this->router->redirect("postagens.page", array("error" => "Você não possui permissão para editar essa postagem"));
+
+        echo json_encode($callback);
+    }
+
+    public function addPostagemAction($data): void
+    {
+        if (empty($data["id"])) {
+            return;
+        }
+        $id = filter_var($data["id"], FILTER_VALIDATE_INT);
+        $usuario = unserialize($_SESSION["usuario"]);
+        
+        $listaModel = new ListaModel();
+        $lista = $listaModel->getFavoritos($usuario);
+
+        $postagemModel = new PostagemModel();
+        $postagem = $postagemModel->getPostagemById($id);
+        
+        if (!isset($postagem)) {
+            $callback["msg"] = "Não foi possível adicionar a postagem";
+        }
+
+        if ($lista->addPostagem($postagem)) {
+            $listaModel->updateLista($lista);
+            $callback["added"] = true;
+        } else {
+            $callback["added"] = false;
+        }
+
+        echo json_encode($callback);
     }
 
     public function checkLink(string $link): bool

@@ -37,7 +37,7 @@
             endforeach;
         else:
         ?>
-            <h2 class="h2">Não existem postagens</h2>
+            <h2 class="h2 text-center my-5 col-sm-10 col-md-12">Não existem postagens</h2>
         <?php
         endif;
     ?>

@@ -48,6 +48,17 @@ class PostagemModel
         return $postagens;
     }
 
+    public function getPostagemById(int $id): ?Postagem
+    {
+        if (!isset($id)) {
+            return null;
+        }
+
+        $postagem = $this->repository->searchById($id);
+
+        return $postagem;
+    }
+
     public function getPostagensByAssunto(Assunto $assunto): ?array
     {
         if (!isset($assunto)) {

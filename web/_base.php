@@ -90,7 +90,7 @@
         <h4>Project | 2019</h4>
     </footer>   
 
-    <script src="<?= url("/web/js/jquery-3.4.1.slim.min.js") ?>"></script>
+    <script src="<?= url("/web/js/jquery-3.4.1.js") ?>"></script>
     <script src="<?= url("/web/js/bootstrap.bundle.js") ?>"></script>
     <?= $v->section("js"); ?>
 </body>

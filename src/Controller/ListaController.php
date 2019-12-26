@@ -24,6 +24,7 @@ class ListaController
     public function favoritosPage($data): void
     {
         $usuario = unserialize($_SESSION["usuario"]);
+
         $listaModel = new ListaModel();
         $lista = $listaModel->getFavoritos($usuario);
 
@@ -33,6 +34,7 @@ class ListaController
 
         echo $this->template->render("favoritos", [
             "title" => "Favoritos",
+            "lista" => $lista,
             "descricao" => $lista->getDescricao(),
             "postagens" => $lista->getPostagens(),
             "data" => $data,
