@@ -22,7 +22,8 @@
                     <div class="card-footer text-center">
                         <p class="h6 font-weight-light">Postado por: <?= $postagem->getUsuario()->getNome(); ?></p>
                         <p class="h6 font-weight-light"><?= $postagem->getDataCriacao(); ?></p>
-                        <button type="button" class="btn btn-primary">Remover</button>
+                        <button type="button" class="btn btn-primary" data-action="<?= $router->route("lista.removePostagemAction") ?>"
+                            data-id="<?= $postagem->getId() ?>">Remover</button>
                         <?php if (isset($_SESSION["username"]) && $postagem->getUsuario()->getNome() == $_SESSION["username"]):
                             ?>
                             <button type="button" class="btn btn-info">Editar</button>
@@ -42,3 +43,32 @@
         endif;
     ?>
 </div>
+
+
+<?php $v->start("js"); ?>
+<script>
+    $(function() {
+        function load(action) {
+            var load_div = $(".ajax_load");
+            if (action === "open") {
+                load_div.fadeIn();   
+            } else {
+                load_div.fadeOut();
+            }
+        }
+
+        $("body").on("click", "[data-action]", function (e) {
+            e.preventDefault();
+            var data = $(this).data();
+            var div = $(this).parent().parent();
+
+            $.post(data.action, data, function() {
+                    div.fadeOut();
+                }, "json").fail(function () {
+                console.log("error");
+            });
+        });
+    }
+    );
+</script>
+<?php $v->end(); ?>

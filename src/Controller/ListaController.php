@@ -5,10 +5,10 @@ namespace Ppo\Controller;
 
 use League\Plates\Engine;
 use Ppo\Model\Entity\Postagem;
+use Ppo\Model\Entity\Lista;
+use Ppo\Model\Entity\Usuario;
 use Ppo\Model\ListaModel;
-use Ppo\Model\PermissaoModel;
-use Ppo\Model\DisciplinaModel;
-use Ppo\Model\AssuntoModel;
+use Ppo\Model\PostagemModel;
 
 class ListaController
 {
@@ -40,6 +40,28 @@ class ListaController
             "data" => $data,
             "router" => $this->router
         ]);
+    }
+
+    public function removePostagemAction($data): void
+    {
+        $id = filter_var($data["id"], FILTER_VALIDATE_INT);
+        $usuario = unserialize($_SESSION["usuario"]);
+        
+        $listaModel = new ListaModel();
+        $lista = $listaModel->getFavoritos($usuario);
+
+        $postagemModel = new PostagemModel();
+        $postagem = $postagemModel->getPostagemById($id);
+
+        if (!isset($lista)) {
+            $callback["msg"] = "erro";
+        } else {
+            $lista->removePostagem($postagem);
+            $listaModel->updateLista($lista);
+            $callback["remove"] = true;
+        }
+        
+        echo json_encode($callback);
     }
 
 }

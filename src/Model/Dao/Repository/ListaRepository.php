@@ -148,9 +148,6 @@
 
         private function deleteConteudo(Lista $lista, array $data): void
         {
-            if (empty($lista->getPostagens())) {
-                return;
-            } 
             $size = sizeof($lista->getPostagens());
             if (empty($data)){
                 return;
