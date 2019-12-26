@@ -1,8 +1,5 @@
 <?php 
     $v->layout("_base");
-    if (session_status() != PHP_SESSION_ACTIVE):
-        session_start();
-    endif;
     if (!isset($_SESSION["username"])):
         $router->redirect("login.page");
     endif;

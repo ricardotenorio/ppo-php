@@ -50,10 +50,10 @@ class PostagensController
     public function minhasPostagensPage($data): void
     {
         $postagemModel = new PostagemModel();
-        session_start();
-        $usuario = unserialize($_SESSION["usuario"]);
-        if (!isset($usuario)) {
-            $this->router->redirect("postagens.page", array("error" => "Você precisa estar logado para visualizar essa página"));
+        if (isset($_SESSION["username"])) {
+            $usuario = unserialize($_SESSION["usuario"]);
+        } else {
+            $this->router->redirect("login.page", array("error" => "Você precisa estar logado para visualizar essa página"));
         }
         $postagens = $postagemModel->getPostagensByUsuario($usuario);
 
@@ -108,7 +108,6 @@ class PostagensController
 
     public function deletePostagemAction($data): void
     {
-        session_start();
         $usuario = unserialize($_SESSION["usuario"]);
         $postagem = $data["postagem"];
 

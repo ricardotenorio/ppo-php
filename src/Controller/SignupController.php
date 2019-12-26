@@ -36,7 +36,6 @@ class SignupController
         $usuario = $usuarioModel->registerUsuario($data["nome"], $data["email"], $data["senha"], $permissao);
 
         if (isset($usuario)) {
-            session_start();
             $_SESSION["usuario"] = serialize($usuario);
             $_SESSION["username"] = $usuario->getNome();
             $_SESSION["user_id"] = $usuario->getId();

@@ -5,6 +5,8 @@
 	use Ppo\Controller\Test;
 	use CoffeeCode\Router\Router;
 
+    session_start();
+
 	$router = new Router(ROOT);
 
 	$router->namespace("Ppo\Controller");
@@ -29,6 +31,12 @@
 	$router->get("/create", "PostagensController:createPostagemPage", "postagens.create");
 	$router->post("/create", "PostagensController:createPostagemAction", "postagens.createAction");
 	$router->get("/minhas-postagens", "PostagensController:minhasPostagensPage", "postagens.usuario");
+	$router->get("/delete", "PostagensController:deletePostagemAction", "postagens.delete");
+
+	$router->group("lista");
+	$router->get("/", "ListaController:page", "lista.page");
+	$router->get("/create", "ListaController:createListaPage", "lista.create");
+	$router->post("/create", "ListaController:createListaAction", "lista.createAction");
 
 	$router->group("test");
 

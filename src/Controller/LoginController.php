@@ -32,7 +32,6 @@ class LoginController
         $usuario = $usuarioModel->login($data["nome"], $data["senha"]);
 
         if (isset($usuario)) {
-            session_start();
             $_SESSION["usuario"] = serialize($usuario);
             $_SESSION["username"] = $usuario->getNome();
             $_SESSION["user_id"] = $usuario->getId();
@@ -46,11 +45,7 @@ class LoginController
 
     public function logoutAction($data): void
     {
-        if (session_status() != PHP_SESSION_ACTIVE) {
-            session_start();
-        }
-
-        session_destroy();
+        $_SESSION = array();  
 
         echo $this->template->render("home", [
             "title" => "Home",

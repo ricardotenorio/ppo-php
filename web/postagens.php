@@ -1,9 +1,4 @@
-<?php 
-    $v->layout("_base"); 
-    if (session_status() != PHP_SESSION_ACTIVE):
-        session_start();
-    endif;
-?>
+<?php $v->layout("_base"); ?>
 
 <?php if (isset($data["error"])):
     ?>
@@ -32,10 +27,11 @@
                         <p class="h6 font-weight-light">Postado por: <?= $postagem->getUsuario()->getNome(); ?></p>
                         <p class="h6 font-weight-light"><?= $postagem->getDataCriacao(); ?></p>
                         <button type="button" class="btn btn-primary">Adicionar</button>
-                        <?php if ($postagem->getUsuario()->getNome() == $_SESSION["username"]):
+                        <?php if (isset($_SESSION["username"]) && $postagem->getUsuario()->getNome() == $_SESSION["username"]):
                             ?>
-                            <button type="button" class="btn btn-info">Editar</button> 
-                            <button type="button" class="btn btn-danger">Deletar</button>
+                            <button type="button" class="btn btn-info">Editar</button>
+                            <button type="button" class="btn btn-danger" data-action="<?= $router->route("postagens.delete") ?>" 
+                                data-id="<?= $postagem->getId() ?>">Deletar</button>
                             <?php
                             endif
                             ?>

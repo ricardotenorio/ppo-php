@@ -1,8 +1,3 @@
-<?php
-    if (session_status() != PHP_SESSION_ACTIVE):
-        session_start();
-    endif;
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -85,7 +80,7 @@
         ?>
     </nav>
 
-    <div class="container">
+    <div class="container"> 
         <main class="main">
             <?= $v->section("content"); ?>
         </main>
@@ -97,5 +92,6 @@
 
     <script src="<?= url("/web/js/jquery-3.4.1.slim.min.js") ?>"></script>
     <script src="<?= url("/web/js/bootstrap.bundle.js") ?>"></script>
+    <?= $v->section("js"); ?>
 </body>
 </html>
