@@ -40,14 +40,31 @@ class ListaModel
         $this->repository->delete($lista);
     }
 
-    public function getLista(Usuario $usuario): ?Lista
+    public function getFavoritos(Usuario $usuario): ?Lista
+    {
+        if (!isset($usuario)) {
+            return null;
+        }
+
+        $listas = $this->repository->searchByUsuario($usuario);
+
+        foreach($listas as $lista) {
+            if ($lista->getNome() == "Favoritos") {
+                return $lista;
+            }
+        }
+
+        return null;
+    }
+
+    public function getListasByUsuario(Usuario $usuario): ?array
     {
         if(!isset($usuario)) {
             return null;
         }
-        $lista = $this->repository->searchByUsuario($usuario);
+        $listas = $this->repository->searchByUsuario($usuario);
 
-        return $lista;
+        return $listas;
     }
 
     public function getListas(): ?array

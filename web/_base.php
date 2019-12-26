@@ -31,9 +31,6 @@
                         <a class="nav-link" href="<?= $router->route("postagens.page") ?>">Postagens</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->route("web.listas") ?>">Listas</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="<?= $router->route("web.disciplinas") ?>">disciplinas</a>
                     </li>
                     <li class="nav-item">
@@ -55,6 +52,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= $router->route("postagens.usuario") ?>">Minhas Postagens</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $router->route("lista.favoritosPage") ?>">Favoritos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= $router->route("login.logoutAction") ?>">Sair</a>

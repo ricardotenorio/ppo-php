@@ -4,6 +4,8 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Entity\Lista;
+    use Ppo\Model\Entity\Usuario;
+    use Ppo\Model\Entity\Postagem;
     use Ppo\Model\Entity\AbstractEntity;
     use Ppo\Model\Repository\UsuarioRepository;
     use Ppo\Model\Repository\PostagemRepository;

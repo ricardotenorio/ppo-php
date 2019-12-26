@@ -1,1 +1,0 @@
-<?php $v->layout("_base"); ?>

@@ -37,6 +37,7 @@
 	$router->get("/", "ListaController:page", "lista.page");
 	$router->get("/create", "ListaController:createListaPage", "lista.create");
 	$router->post("/create", "ListaController:createListaAction", "lista.createAction");
+	$router->get("/favoritos", "ListaController:favoritosPage", "lista.favoritosPage");
 
 	$router->group("test");
 
