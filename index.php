@@ -30,6 +30,8 @@
 	$router->get("/", "PostagensController:page", "postagens.page");
 	$router->get("/create", "PostagensController:createPostagemPage", "postagens.create");
 	$router->post("/create", "PostagensController:createPostagemAction", "postagens.createAction");
+	$router->get("/edit/{postagem_id}", "PostagensController:editPostagemPage", "postagens.edit");
+	$router->post("/edit", "PostagensController:editPostagemAction", "postagens.editAction");
 	$router->get("/minhas-postagens", "PostagensController:minhasPostagensPage", "postagens.usuario");
 	$router->post("/delete", "PostagensController:deletePostagemAction", "postagens.delete");
 	$router->post("/add", "PostagensController:addPostagemAction", "postagens.add");

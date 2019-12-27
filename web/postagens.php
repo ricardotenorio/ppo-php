@@ -32,13 +32,13 @@
                                 data-id="<?= $postagem->getId() ?>">Adicionar</button>
                             <?php if ($postagem->getUsuario()->getNome() == $_SESSION["username"]):
                                 ?>
-                                <button type="button" class="btn btn-info">Editar</button>
+                                <a class="btn btn-info" href="<?= $router->route("postagens.edit", ["postagem_id" => $postagem->getId()]) ?>">Editar</a>
                                 <button type="button" class="btn btn-danger delete-post" data-action="<?= $router->route("postagens.delete") ?>" 
                                     data-id="<?= $postagem->getId() ?>">Deletar</button>
                                 <?php
                                 endif
                                 ?>
-                            <?php 
+                            <?php  
                             endif 
                             ?>
                     </div>

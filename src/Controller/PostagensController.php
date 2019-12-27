@@ -96,9 +96,30 @@ class PostagensController
         $this->router->redirect("postagens.page");
     }
 
-    public function updatePostagemAction($data): void
+    public function editPostagemPage($data): void
     {
-        session_start();
+        $id = filter_var($data["postagem_id"], FILTER_VALIDATE_INT);
+        $postagemModel = new PostagemModel();
+        $postagem = $postagemModel->getPostagemById($id);
+
+        if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] == $postagem->getUsuario()->getId()) {
+            $disciplinaModel = new DisciplinaModel();
+            $disciplinas = $disciplinaModel->getDisciplinas();
+    
+            echo $this->template->render("editPostagem", [
+                "title" => "Editar Postagem",
+                "postagem" => $postagem,
+                "disciplinas" => $disciplinas,
+                "data" => $data,
+                "router" => $this->router
+            ]);
+        } else {
+            $this->router->redirect("postagens.minhasPostagens");
+        }
+    }
+
+    public function editPostagemAction($data): void
+    {
         $usuario = unserialize($_SESSION["usuario"]);
         $postagemId = $_SESSION["postagem_id"];
         $postagem = new Postagem($postagemId, $data["tipo"], $data["link"], $data["titulo"], $data["descricao"],
