@@ -7,7 +7,7 @@ use League\Plates\Engine;
 use Ppo\Model\Entity\Postagem;
 use Ppo\Model\Repository\PostagemRepository;
 
-class Test
+class WebController
 {
     private $router;
     private $templates;
@@ -18,23 +18,17 @@ class Test
         $this->templates = Engine::create(__DIR__ . "/../../web", "php");
     }
 
-    public function home(): void
+    public function home($data): void
     {
         $postagemRep = new PostagemRepository();
         $postagens = $postagemRep->listAll();
         echo $this->templates->render("home", [
             "title" => "Home",
             "postagens" => $postagens,
+            "data" => $data,
             "router" => $this->router
         ]);
     }
 
-    public function hello(): void
-    {
-        echo $this->templates->render("_base", [
-            "title" => "Hello", 
-            "router" => $this->router
-        ]);
-    }
 }
   

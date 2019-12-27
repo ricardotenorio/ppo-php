@@ -7,7 +7,7 @@ use League\Plates\Engine;
 use Ppo\Model\UsuarioModel;
 use Ppo\Model\PermissaoModel;
 
-class Signup
+class SignupController
 {
     private $router;
     private $template;
@@ -36,7 +36,6 @@ class Signup
         $usuario = $usuarioModel->registerUsuario($data["nome"], $data["email"], $data["senha"], $permissao);
 
         if (isset($usuario)) {
-            session_start();
             $_SESSION["usuario"] = serialize($usuario);
             $_SESSION["username"] = $usuario->getNome();
             $_SESSION["user_id"] = $usuario->getId();

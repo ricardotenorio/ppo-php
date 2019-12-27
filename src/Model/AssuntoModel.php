@@ -16,14 +16,17 @@ class AssuntoModel
         $this->repository = new AssuntoRepository();
     }
 
-    public function createAssunto(string $nome, Disciplina $disciplina): void
+    public function createAssunto(string $nome, Disciplina $disciplina): ?Assunto
     {
         if (!isset($nome) || $this->repository->searchByNome($nome)) {
-            return;
+            return null;
         }
 
         $assunto = new Assunto(null, $nome, $disciplina, null);
-        $this->repository->save($assunto);
+        $id = $this->repository->save($assunto);
+        $assunto->setId($id);
+
+        return $assunto;
     }
 
     public function updateAssunto(Assunto $assunto): void

@@ -4,6 +4,8 @@
     namespace Ppo\Model\Repository;
 
     use Ppo\Model\Entity\Postagem;
+    use Ppo\Model\Entity\Usuario;
+    use Ppo\Model\Entity\Assunto;
     use Ppo\Model\Entity\AbstractEntity;
     use Ppo\Model\Repository\UsuarioRepository;
     use Ppo\Model\Repository\AssuntoRepository;
@@ -47,6 +49,7 @@
             } else {
                 $this->update("postagem", $postagem->getData(), array("id" => $postagem->getId()));
             }
+            return null;
         }
 
         public function delete(Postagem $postagem): void

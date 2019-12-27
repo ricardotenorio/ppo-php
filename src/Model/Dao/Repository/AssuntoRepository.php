@@ -33,10 +33,11 @@
             return $assunto;
         }
 
-        public function save(Assunto $assunto): void
+        public function save(Assunto $assunto): ?int
         {
             if (empty($assunto->getId())) {
-                $this->insert("assunto", $assunto->getData());
+                $id = $this->insert("assunto", $assunto->getData());
+                return $id;
             } else {
                 $this->update("assunto", $assunto->getData(), array("id" => $assunto->getId()));
             }

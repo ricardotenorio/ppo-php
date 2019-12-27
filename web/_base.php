@@ -1,8 +1,3 @@
-<?php
-    if (session_status() != PHP_SESSION_ACTIVE) {
-        session_start();
-    }
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -33,16 +28,13 @@
                         <a class="nav-link" href="<?= $router->route("web.home") ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->route("web.postagens") ?>">Postagens</a>
+                        <a class="nav-link" href="<?= $router->route("postagens.page") ?>">Postagens</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->route("web.listas") ?>">Listas</a>
+                        <a class="nav-link" href="<?= $router->route("disciplina.page") ?>">disciplinas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->route("web.disciplinas") ?>">disciplinas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->route("web.assuntos") ?>">Assuntos</a>
+                        <a class="nav-link" href="<?= $router->route("assunto.page") ?>">Assuntos</a>
                     </li>
                 </ul>
             </div>
@@ -55,6 +47,15 @@
                         data-toggle="collapse" data-target="#navbarLoginContent"> <?= $_SESSION["username"] ?> </button>
                     
                     <ul class="collapse justify-content-center navbar-nav" id="navbarLoginContent">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $router->route("postagens.create") ?>">Nova Postagem</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $router->route("postagens.usuario") ?>">Minhas Postagens</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $router->route("lista.favoritosPage") ?>">Favoritos</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= $router->route("login.logoutAction") ?>">Sair</a>
                         </li>
@@ -71,7 +72,7 @@
                         </li>
                     </ul>
                     <?php
-                endif
+                endif;
                 ?>
             </div>
         <?php
@@ -79,17 +80,18 @@
         ?>
     </nav>
 
-    <div class="container">
+    <div class="container"> 
         <main class="main">
             <?= $v->section("content"); ?>
         </main>
     </div>
 
-    <footer class="nav fixed-bottom bg-dark mt-auto">
-        <p class="m-auto text-white h4 p-5">Project | 2019</p>
+    <footer id="footer">
+        <h4>Project | 2019</h4>
     </footer>   
 
-    <script src="<?= url("/web/js/jquery-3.4.1.slim.min.js") ?>"></script>
-    <script src="<?= url("/web/js/bootstrap.js") ?>"></script>
+    <script src="<?= url("/web/js/jquery-3.4.1.js") ?>"></script>
+    <script src="<?= url("/web/js/bootstrap.bundle.js") ?>"></script>
+    <?= $v->section("js"); ?>
 </body>
 </html>

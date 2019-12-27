@@ -23,7 +23,7 @@ class Postagem extends AbstractEntity
         $this->tipo = $tipo;
         $this->link = $link;
         $this->titulo = $titulo;
-        $this->escricao = $descricao;
+        $this->descricao = $descricao;
         $this->votos = $votos;
         $this->dataCriacao = $dataCriacao;
         $this->usuario = $usuario;
@@ -40,6 +40,26 @@ class Postagem extends AbstractEntity
             'assunto_id' => $this->assunto->getId());
     }
 
+    // verifica o protocolo da url, adicionando se não houver
+    public static function checkUrlProtocol(string $url): string
+    {
+        $urlParts = parse_url($url);
+
+        if (!isset($urlParts["scheme"])) {
+            $url = "https://$url";
+        }
+
+        return $url;
+    }
+
+    public static function validLinkUrl(string $url): bool
+    {
+        if (filter_var($url, FILTER_VALIDATE_URL)) {
+            return true;
+        }
+
+        return false;
+    }
     // getters & setters
 
     public function getId(): ?int
