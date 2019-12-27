@@ -59,7 +59,7 @@ class PostagensController
         }
         $postagens = $postagemModel->getPostagensByUsuario($usuario);
 
-        echo $this->template->render("minhas_postagens", [
+        echo $this->template->render("minhasPostagens", [
             "title" => "Minhas Postagens",
             "postagens" => $postagens,
             "data" => $data,
@@ -85,7 +85,6 @@ class PostagensController
                 $assunto = $assuntoModel->createAssunto($assuntoNome, $disciplina);
             }
 
-            session_start();
             $usuario = unserialize($_SESSION["usuario"]);
             $postagemModel = new PostagemModel();
             
@@ -93,7 +92,7 @@ class PostagensController
                 $usuario, $assunto);
         }
 
-        $this->router->redirect("postagens.page");
+        $this->router->redirect("postagens.usuario");
     }
 
     public function editPostagemPage($data): void
@@ -114,19 +113,48 @@ class PostagensController
                 "router" => $this->router
             ]);
         } else {
-            $this->router->redirect("postagens.minhasPostagens");
+            $this->router->redirect("postagens.usuario");
         }
     }
 
     public function editPostagemAction($data): void
     {
-        $usuario = unserialize($_SESSION["usuario"]);
-        $postagemId = $_SESSION["postagem_id"];
-        $postagem = new Postagem($postagemId, $data["tipo"], $data["link"], $data["titulo"], $data["descricao"],
-            $usuario, $data["assunto"]);
+        $id = filter_var($data["postagem_id"], FILTER_VALIDATE_INT);
         $postagemModel = new PostagemModel();
-        $postagemModel->updatePostagem($postagem);
-        $this->router->redirect("postagens.page");
+        $postagem = $postagemModel->getPostagemById($id);
+
+        if (isset($_SESSION["user_id"]) && $_SESSION["user_id"] == $postagem->getUsuario()->getId()) {
+            $data["link"] = Postagem::checkUrlProtocol($data["link"]);
+
+            if (!$this->checkLink($data["link"])) {
+                $this->editPostagemPage(array("error" => "Url inválida!"));
+            } else {
+                $assuntoNome = trim($data["assunto"]);
+                $assuntoNome = ucfirst(strtolower($assuntoNome));
+                $assuntoModel = new AssuntoModel();
+                $assunto = $assuntoModel->getAssuntoByNome($assuntoNome);
+                
+                if (!isset($assunto)) {
+                    $disciplinaModel = new DisciplinaModel();
+                    $disciplina = $disciplinaModel->getDisciplinaByNome($data["disciplina"]);
+                    $assunto = $assuntoModel->createAssunto($assuntoNome, $disciplina);
+                }
+
+                $postagemModel = new PostagemModel();
+                $usuario = unserialize($_SESSION["usuario"]);
+                
+                $postagem->setTipo($data["tipo"]);
+                $postagem->setLink($data["link"]);
+                $postagem->setTitulo($data["titulo"]);
+                $postagem->setDescricao($data["descricao"]);
+                $postagem->setAssunto($assunto);
+
+                $postagemModel->updatePostagem($postagem);
+                $this->router->redirect("postagens.usuario");
+            }
+        } else {
+            $this->router->redirect("postagens.usuario");
+        }
     }
 
     public function deletePostagemAction($data): void

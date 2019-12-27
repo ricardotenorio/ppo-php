@@ -14,7 +14,7 @@
 
     <h2 class="text-center col-12">Editar postagem</h2>
     <div class="jumbotron text-center col-sm-12 col-md-8">
-        <form action="<?= url("postagens/editAction") ?>" method="POST">
+        <form action="<?= $router->route("postagens/editAction", ["postagem_id" => $postagem->getId()]) ?>" method="POST">
 
             <div class="form-group col-12">
                 <label for="titulo">Título</label>
@@ -62,8 +62,7 @@
 
             <h6 class="h6">Tipo de Mídia</h6>
 
-            <div class="form-group ">
-
+            <div class="form-group">
                 <div class="form-check form-check-inline col-12">
                     <input class="form-input-check col-1" type="radio" id="video" name="tipo" value="video" checked>
                     <label class="form-check-label col-sm-5 col-md-3" for="video">

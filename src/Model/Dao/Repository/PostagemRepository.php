@@ -49,6 +49,7 @@
             } else {
                 $this->update("postagem", $postagem->getData(), array("id" => $postagem->getId()));
             }
+            return null;
         }
 
         public function delete(Postagem $postagem): void
