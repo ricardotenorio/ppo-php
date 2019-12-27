@@ -31,10 +31,10 @@
                         <a class="nav-link" href="<?= $router->route("postagens.page") ?>">Postagens</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->route("web.disciplinas") ?>">disciplinas</a>
+                        <a class="nav-link" href="<?= $router->route("disciplina.page") ?>">disciplinas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->route("web.assuntos") ?>">Assuntos</a>
+                        <a class="nav-link" href="<?= $router->route("assunto.page") ?>">Assuntos</a>
                     </li>
                 </ul>
             </div>

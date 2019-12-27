@@ -11,11 +11,7 @@
 
 	$router->namespace("Ppo\Controller");
 	$router->group("");
-	$router->get("/", function() 
-		{
-			echo "<h1> home <h1>";
-		}, "web.home"
-	);
+	$router->get("/", "WebController:home", "web.home");
 
 	$router->group("login");
 	$router->get("/", "LoginController:page", "login.page");
@@ -36,6 +32,10 @@
 	$router->post("/delete", "PostagensController:deletePostagemAction", "postagens.delete");
 	$router->post("/add", "PostagensController:addPostagemAction", "postagens.add");
 
+	$router->group("disciplina");
+	$router->get("/", "DisciplinaController:page", "disciplina.page");
+	$router->get("/{disciplina}", "DisciplinaController:page", "disciplina.page");
+
 	$router->group("lista");
 	$router->get("/", "ListaController:page", "lista.page");
 	$router->get("/create", "ListaController:createListaPage", "lista.create");
@@ -43,12 +43,8 @@
 	$router->get("/favoritos", "ListaController:favoritosPage", "lista.favoritosPage");
 	$router->post("/favoritos/remove", "ListaController:removePostagemAction", "lista.removePostagemAction");
 
-	$router->group("test");
-	$router->get("/", "Test:home");
-	$router->get("/hello", "Test:hello", "test.hello");
-
 	$router->dispatch();
 
 	if ($router->error()) {
-		var_dump($router->error());
+		$router->redirect("web.home", ["error" => $router->error()]);
 	}

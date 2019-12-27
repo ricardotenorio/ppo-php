@@ -10,6 +10,37 @@
 <?php $v->section("header"); ?>
 
 <div class="content row">
+
+    <div class="dropdown justify-content-center col-12">
+        <form action="<?= $router->route("disciplina.page") ?>" method="GET">
+            <button class="btn btn-secondary btn-block col-5 dropdown-toggle" type="button" id="dropdownDisciplinas" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Disciplina
+            </button>
+            <div class="dropdown-menu col-sm-10 col-md-5" aria-labelledby="dropdownDisciplinas">
+                <?php 
+                    if ($disciplinas):
+                        $count = 0;
+                        foreach($disciplinas as $disciplina):
+                            $nomeDisciplina = $disciplina->getNome();
+                            ?>
+                            <div class="form-check form-check-inline col-12">
+                                <input class="form-input-check dropdown-item col-3" type="radio" 
+                                    id="<?= $nomeDisciplina; ?>" name="disciplina" value="<?= $nomeDisciplina; ?>" <?php if ($count++ == 0): echo "checked"; endif; ?>>
+                                <label class="form-check-label dropdown-item col-8" for="<?= $nomeDisciplina; ?>">
+                                    <?= $nomeDisciplina; ?>
+                                </label>
+                            </div>
+                        <?php
+                        endforeach;
+                    endif; 
+                ?>
+            </div>
+
+            <button class="btn btn-primary col-3" type="submit">Filtrar</button>
+        </form>
+    </div>
+
     <?php 
         if($postagens): 
             foreach($postagens as $postagem):
@@ -17,7 +48,9 @@
                 <div class="card col-md-5 col-sm-9 mx-auto my-3">
                     <h5 class="card-header text-center"><?= $postagem->getTitulo() ?></h5>
                     <div class="card-body">
-                        <a class="text-muted" href="<?= $router->route("disciplina.page", ["disciplina" => $postagem->getAssunto()->getDisciplina()->getNome()]); ?>"><?= $postagem->getAssunto()->getDisciplina()->getNome(); ?></a>
+                        <a class="text-muted" href="<?php $router->route("disciplina.page",
+                            ["disciplina" => $postagem->getAssunto()->getDisciplina()->getNome()]);
+                            ?>"><?= $postagem->getAssunto()->getDisciplina()->getNome(); ?></a>
                         <a class="text-muted" href="#"><?= $postagem->getAssunto()->getNome(); ?></a>
                         <br>
                         <a class="card-link" href="<?= $postagem->getLink() ?>" target="_blank">
@@ -54,39 +87,3 @@
         endif;
     ?>
 </div>
-
-<?php $v->start("js"); ?>
-<script>
-    $(function() {
-        function load(action) {
-            var load_div = $(".ajax_load");
-            if (action === "open") {
-                load_div.fadeIn();   
-            } else {
-                load_div.fadeOut();
-            }
-        }
-
-        $("body").on("click", "[data-action]", function (e) {
-            e.preventDefault();
-            var data = $(this).data();
-            var div = $(this).parent().parent();
-
-            if ($(this).hasClass("delete-post")) {
-                var action = function() {
-                    div.fadeOut();
-                }
-            } else {
-                var action = function() {
-                   
-                }
-            }
-
-            $.post(data.action, data, action, "json").fail(function () {
-                console.log("error");
-            });
-        });
-    }
-    );
-</script>
-<?php $v->end(); ?>

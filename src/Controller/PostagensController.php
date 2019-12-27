@@ -7,7 +7,6 @@ use League\Plates\Engine;
 use Ppo\Model\Entity\Postagem;
 use Ppo\Model\Entity\Lista;
 use Ppo\Model\PostagemModel;
-use Ppo\Model\PermissaoModel;
 use Ppo\Model\DisciplinaModel;
 use Ppo\Model\AssuntoModel;
 use Ppo\Model\ListaModel;

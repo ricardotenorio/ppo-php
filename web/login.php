@@ -15,12 +15,12 @@
 
             <div class="form-group col-12">
                 <label for="nome-login">Nome de Usuário</label>
-                <input type="text" name="nome" class="form-control" id="nome-login" placeholder="Nome">
+                <input type="text" name="nome" class="form-control" id="nome-login" placeholder="Nome" required>
             </div>  
 
             <div class="form-group col-12">
                 <label for="senha-login">Senha</label>
-                <input type="password" name="senha" class="form-control" id="senha-login" placeholder="Senha">
+                <input type="password" name="senha" class="form-control" id="senha-login" placeholder="Senha" required>
             </div>
 
             <button type="submit" class="btn btn-primary mx-auto">Entrar</button>

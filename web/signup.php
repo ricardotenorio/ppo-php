@@ -8,17 +8,17 @@
 
             <div class="form-group col-12">
                 <label for="nome">Nome de Usuário</label>
-                <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome">
+                <input type="text" name="nome" class="form-control" id="nome" placeholder="Nome" required>
             </div>
 
             <div class="form-group col-12">
                 <label for="email">Email</label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
             </div>
 
             <div class="form-group col-12">
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha">
+                <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha" required>
             </div>
 
             <button type="submit" class="btn btn-primary mx-auto">Entrar</button>

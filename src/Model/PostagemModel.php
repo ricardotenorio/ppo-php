@@ -6,7 +6,9 @@ namespace Ppo\Model;
 use Ppo\Model\Entity\Postagem;
 use Ppo\Model\Entity\Assunto;
 use Ppo\Model\Entity\Usuario;
+use Ppo\Model\Entity\Disciplina;
 use Ppo\Model\Repository\PostagemRepository;
+use Ppo\Model\Repository\DisciplinaRepository;
 
 class PostagemModel
 {
