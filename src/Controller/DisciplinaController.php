@@ -27,7 +27,6 @@ class DisciplinaController
         $postagemModel = new PostagemModel();
         $postagens = $postagemModel->getPostagens();
        
-        var_dump($data);
         if (isset($_GET["disciplina"])) {
             $auxArray = array();
 
